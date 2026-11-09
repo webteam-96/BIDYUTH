@@ -1,0 +1,28 @@
+{
+  "name": "bidyuth-2027",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "framer-motion": "^14.10.1",
+    "gsap": "^3.15.1",
+    "lenis": "^1.3.27",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "split-type": "^0.3.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.5"
+  }
+}

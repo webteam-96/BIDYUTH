@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bidyuth 2027 | BBB Flagship Event | 29–30 Jan, Palace Grounds, Bengaluru</title>
+    <meta name="description" content="Bidyuth 2027 — the flagship event of the Forum of Business By Brahmins (BBB). 3000+ business owners from 23 cities and 14 states. 29–30 January 2027, Palace Grounds, Bengaluru. Early bird registration open." />
+    <meta name="theme-color" content="#F4EFE6" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <!-- PLACEHOLDER: replace og:url / og:image with absolute production URLs -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bidyuth 2027 — 3000 minds. One current." />
+    <meta property="og:description" content="BBB's flagship gathering. 29–30 Jan 2027, Palace Grounds, Bengaluru." />
+    <meta property="og:image" content="./og-image.jpg" />
+    <meta property="og:url" content="https://example.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- non-blocking font CSS (swap); noscript fallback below -->
+    <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" />
+    </noscript>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Bidyuth 2027",
+        "description": "The flagship event of the Forum of Business By Brahmins (BBB). 3000+ delegates from 23 cities and 14 states.",
+        "startDate": "2027-01-29T09:00:00+05:30",
+        "endDate": "2027-01-30T18:00:00+05:30",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Palace Grounds",
+          "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "addressCountry": "IN" }
+        },
+        "organizer": { "@type": "Organization", "name": "Forum of Business By Brahmins (BBB)" },
+        "offers": {
+          "@type": "Offer",
+          "price": "3555",
+          "priceCurrency": "INR",
+          "availability": "https://schema.org/InStock",
+          "validThrough": "2026-11-30T23:59:59+05:30",
+          "url": "https://example.com/#pricing"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- preloader paints before JS; animated + removed by src/components/Preloader.tsx (label text comes from data/event.ts) -->
+    <div id="preloader" class="fixed inset-0 z-[120]" role="status" aria-label="Loading">
+      <div data-panel class="absolute inset-0 flex items-center justify-center bg-ink px-4 text-bg" style="clip-path: inset(0% 0 0% 0)">
+        <!-- wordmark as SVG: comic panels play inside the letters (clipPath), outline on top -->
+        <svg data-logo viewBox="0 18 1000 184" class="w-[calc(100vw-2rem)] overflow-visible lg:w-[calc(min(19vw,22rem)*4.25)]" aria-hidden="true">
+          <defs>
+            <clipPath id="pl-word"><text data-word class="pl-word" x="500" y="196" text-anchor="middle" textLength="1000" lengthAdjust="spacingAndGlyphs">BIDYUTH</text></clipPath>
+            <pattern id="pl-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="2.4" fill="#161412" opacity="0.2" /></pattern>
+          </defs>
+          <g clip-path="url(#pl-word)">
+            <g data-reel></g>
+            <rect data-solid x="0" y="0" width="1000" height="240" fill="#7CC4EE" opacity="0" />
+          </g>
+          <text data-word class="pl-word" x="500" y="196" text-anchor="middle" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="none" stroke="rgba(244,239,230,0.4)" stroke-width="1.5">BIDYUTH</text>
+        </svg>
+        <p class="mono absolute bottom-6 left-4 right-4 flex justify-between text-label md:bottom-8 md:left-8 md:right-8">
+          <span data-label-text>Charging</span><span class="tabular-nums"><span data-num>000</span>%</span>
+        </p>
+      </div>
+      <div data-line class="pointer-events-none absolute inset-x-0 top-1/2 h-[2px] origin-left -translate-y-1/2 scale-x-0 bg-primary"></div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,152 @@
+@import 'tailwindcss';
+@import './fonts.css';
+
+:root {
+  --bg: #f4efe6;
+  --bg-alt: #eae2d3;
+  --ink: #161412;
+  --primary: #7cc4ee;
+  --primary-2: #b9e0f7;
+  --secondary: #f28c28;
+  --secondary-2: #ffb36b;
+  --line: rgba(22, 20, 18, 0.12);
+  --gutter: 1rem;
+}
+
+@theme {
+  --color-bg: #f4efe6;
+  --color-bg-alt: #eae2d3;
+  --color-ink: #161412;
+  --color-primary: #7cc4ee;
+  --color-primary-2: #b9e0f7;
+  --color-secondary: #f28c28;
+  --color-secondary-2: #ffb36b;
+  --color-line: rgba(22, 20, 18, 0.12);
+  --font-display: 'Clash Display', 'Arial Narrow', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-body: 'General Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+
+  /* Type scale — floors: label/meta/small 13px mobile → 14px desktop, body 16 → 18px */
+  --text-label: clamp(0.8125rem, 0.7675rem + 0.17vw, 0.875rem);
+  --text-label--line-height: 1.4;
+  --text-meta: clamp(0.8125rem, 0.77rem + 0.2vw, 0.9375rem);
+  --text-meta--line-height: 1.5;
+  --text-body: clamp(1rem, 0.95rem + 0.22vw, 1.125rem);
+  --text-body--line-height: 1.6;
+  --text-lead: clamp(1.125rem, 1rem + 0.55vw, 1.375rem);
+  --text-lead--line-height: 1.5;
+  --text-countdown: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-countdown--line-height: 1;
+  --text-price: clamp(2.75rem, 12vw, 4.4rem);
+  --text-price--line-height: 1;
+  --text-display-xs: clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem);
+  --text-display-xs--line-height: 1.05;
+  --text-display-sm: clamp(1.875rem, 1.4rem + 2vw, 3.6rem);
+  --text-display-sm--line-height: 0.95;
+  --text-display-md: clamp(2.5rem, 1.6rem + 4.6vw, 6.5rem);
+  --text-display-md--line-height: 0.9;
+  --text-display-lg: clamp(3.25rem, 1.5rem + 13vw, 19rem);
+  --text-display-lg--line-height: 0.82;
+  --text-manifesto: clamp(1.875rem, 1.2rem + 3.8vw, 5.6rem);
+  --text-manifesto--line-height: 1.04;
+  /* hero wordmark spans the content width on phones */
+  --text-hero: calc((100vw - 2rem) / 4.25);
+  --text-hero--line-height: 0.8;
+  --text-hero-lg: clamp(4.5rem, 19vw, 22rem);
+  --text-hero-lg--line-height: 0.8;
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+@supports (overflow: clip) {
+  body { overflow-x: clip; }
+}
+body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
+
+::selection { background: var(--secondary); color: var(--ink); }
+
+:focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; border-radius: 6px; }
+
+.display { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.04em; word-spacing: 0.08em; line-height: 0.85; }
+.serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.02em; }
+.mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* grain overlay */
+.grain {
+  position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.pl-word { font-family: var(--font-display); font-weight: 600; font-size: 236px; letter-spacing: -0.04em; }
+
+.outline-text { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
+
+.sticker {
+  font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-label); font-weight: 700; line-height: 1.2;
+  display: inline-flex; align-items: center; gap: 0.4em; padding: 0.55em 1em; border-radius: 999px;
+  border: 1.5px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); white-space: nowrap;
+}
+
+/* schedule row flood: hover on pointer devices, tap (.is-on) everywhere */
+.flood { position: relative; isolation: isolate; }
+.flood::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; background: var(--secondary);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.flood.is-on::before { transform: scaleX(1); }
+@media (hover: hover) {
+  .flood:hover::before { transform: scaleX(1); }
+}
+
+/* partner card charging border: hover on desktop, one pass on enter for touch */
+.charge-border rect { stroke-dasharray: 18 82; stroke-dashoffset: 0; opacity: 0; transition: opacity 0.3s; }
+.charge-card.is-charged .charge-border rect { opacity: 1; animation: charge 1.8s cubic-bezier(0.6, 0, 0.3, 1) 1 forwards; }
+@media (hover: hover) {
+  .charge-card:hover .charge-border rect { opacity: 1; animation: charge 1.6s linear infinite; }
+}
+.charge-card:focus-within .charge-border rect { opacity: 1; animation: charge 1.6s linear infinite; }
+@keyframes charge { to { stroke-dashoffset: -100; } }
+
+/* active pricing card: slow glow pulse (opacity only, ~0.4 Hz) */
+.pulse-glow { position: relative; }
+.pulse-glow::after {
+  content: ''; position: absolute; inset: -6px; border-radius: 34px; pointer-events: none; z-index: -1;
+  box-shadow: 0 0 0 6px rgba(242, 140, 40, 0.35), 0 0 60px rgba(242, 140, 40, 0.7);
+  animation: glow 2.4s ease-in-out infinite alternate;
+}
+@keyframes glow { from { opacity: 0.45; } to { opacity: 1; } }
+
+/* letter swap links */
+.swap { display: inline-flex; overflow: hidden; line-height: 1.15; }
+.swap span { display: inline-block; position: relative; transition: transform 0.35s cubic-bezier(0.7, 0, 0.2, 1); }
+.swap span::after { content: attr(data-c); position: absolute; left: 0; top: 100%; color: var(--secondary); }
+a:hover .swap span, a:focus-visible .swap span { transform: translateY(-100%); }
+
+/* tech partner shimmer */
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::after {
+  content: ''; position: absolute; inset: 0; transform: translateX(-120%); pointer-events: none;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.65) 50%, transparent 70%);
+}
+.shimmer.is-in::after { animation: shimmer 1.6s 0.2s ease-out forwards; }
+@keyframes shimmer { to { transform: translateX(120%); } }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
