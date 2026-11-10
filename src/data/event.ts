@@ -137,8 +137,8 @@ export const FEATURES = {
 
 export const PRICING = {
   label: 'Pricing',
-  title: 'Charge early.',
-  titleAccent: 'Pay less.',
+  title: 'Registration',
+  titleAccent: 'charges',
   sub: 'Early bird pricing · all fees incl. GST',
   closed: 'Closed',
   activeLabel: 'Live now',
