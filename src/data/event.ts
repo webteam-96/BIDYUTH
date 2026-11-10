@@ -41,8 +41,8 @@ export const EVENT = {
   venueFull: 'Palace Grounds, Bengaluru',
   logos: {
     // cut from the brand deck JPG; swap for vector files when available
-    bidyuth: './logos/bidyuth.png',
-    bidyuthWhite: './logos/bidyuth-white.png',
+    bidyuth: './logos/bidyuth.svg',
+    bidyuthWhite: './logos/bidyuth-white.svg',
     // PLACEHOLDER logos
     bbb: './logos/bbb.svg',
     kaizen: './logos/kaizen.svg',

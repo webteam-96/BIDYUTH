@@ -6,7 +6,7 @@ export function Footer() {
     <footer data-bg="var(--ink)" className="bg-ink px-4 pb-8 pt-16 text-bg md:px-8 md:pt-20">
       <div className="mx-auto grid max-w-[1400px] gap-10 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <img src={EVENT.logos.bidyuthWhite} alt={`${EVENT.organiserShort} ${EVENT.name} logo`} className="h-12 w-auto md:h-14" width={800} height={185} loading="lazy" />
+          <img src={EVENT.logos.bidyuthWhite} alt={`${EVENT.organiserShort} ${EVENT.name} logo`} className="h-12 w-auto md:h-14" width={2036} height={490} loading="lazy" />
           <p className="serif mt-5 text-display-xs">{EVENT.tagline}.</p>
           <p className="mt-2 text-body opacity-80">
             {HERO.date.range} {HERO.date.monthYear} · {EVENT.venueFull}

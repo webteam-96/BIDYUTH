@@ -67,7 +67,7 @@ export function Nav() {
       >
         <nav aria-label={UI.navLabel} className="mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-line bg-bg/85 py-1.5 pl-3 pr-1.5 backdrop-blur-md">
           <a href="#top" onClick={(e) => go(e, '#top')} className="flex min-h-11 items-center gap-2" aria-label={UI.home}>
-            <img src={EVENT.logos.bidyuth} alt="" className="h-8 w-auto md:h-9" width={800} height={185} />
+            <img src={EVENT.logos.bidyuth} alt="" className="h-8 w-auto md:h-9" width={2036} height={490} />
           </a>
           <ul className="hidden items-center gap-7 lg:flex">
             {NAV.links.map((l) => (
