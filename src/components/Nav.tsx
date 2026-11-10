@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { EVENT, NAV, UI, URLS } from '../data/event';
-import { ScrollTrigger, getLenis, scrollToHash } from '../lib/gsap';
+import { getLenis, scrollToHash } from '../lib/gsap';
 import { Bolt } from './MagneticButton';
 
 const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&';
@@ -28,14 +28,8 @@ function Scramble({ text }: { text: string }) {
 }
 
 export function Nav() {
-  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const menuBtn = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    const st = ScrollTrigger.create({ start: 0, end: 'max', onUpdate: (s) => setHidden(s.direction === 1 && s.scroll() > 240) });
-    return () => st.kill();
-  }, []);
 
   // lock page scroll + Escape to close while the overlay is open
   useEffect(() => {
@@ -63,7 +57,7 @@ export function Nav() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-3 z-[72] px-4 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)] md:px-8 ${hidden && !open ? '-translate-y-[140%]' : ''}`}
+        className={`fixed inset-x-0 top-3 z-[72] px-4 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)] md:px-8`}
       >
         <nav aria-label={UI.navLabel} className="mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-line bg-bg/85 py-1.5 pl-3 pr-1.5 backdrop-blur-md">
           <a href="#top" onClick={(e) => go(e, '#top')} className="flex min-h-11 items-center gap-2" aria-label={UI.home}>
