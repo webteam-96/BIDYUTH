@@ -129,7 +129,12 @@ export const FEATURES = {
   titleAccent: 'minute one',
   comingSoon: 'Event highlights will be announced here soon.',
   // add { title, body } entries to show the cards instead of "Coming soon"
-  items: [] as { title: string; body: string }[],
+  items: [
+    { title: 'Live KYT sessions', body: 'KYT sessions run live with members from 23 cities and 14 states.' },
+    { title: 'Quality speakers', body: 'Talks from business leaders and achievers from across the community.' },
+    { title: 'Business transactions', body: 'Real referrals and deals passed between members over both days.' },
+    { title: 'Networking', body: 'Two days with 3000+ business owners under one roof.' },
+  ] as { title: string; body: string }[],
 };
 
 export const PRICING = {
@@ -282,12 +287,24 @@ export const FINAL = {
 };
 
 export const COMMITTEE = {
-  label: 'Organising committee',
-  // flip to true once real members are in `members`
-  ready: false,
+  label: 'Event organising committee',
+  ready: true,
   comingSoon: 'Committee members will be announced here soon.',
-  // PLACEHOLDER committee grid
-  members: Array.from({ length: 8 }, (_, i) => ({ name: 'To be announced', role: `Committee member ${i + 1}` })),
+  // PLACEHOLDER: add role ('Convenor', ...) per member; shows under the name when set
+  members: [
+    { name: 'Anand Desai', role: '' },
+    { name: 'Sreedhar Kulkarni', role: '' },
+    { name: 'Praveen Dyta', role: '' },
+    { name: 'Shreenivas Badada', role: '' },
+    { name: 'Sameer Kulkarni', role: '' },
+    { name: 'Mythili Balaji', role: '' },
+    { name: 'Dr. V N Murthy', role: '' },
+    { name: 'Muralidhar Kulkarni', role: '' },
+    { name: 'Mahesh Balasubramanian', role: '' },
+    { name: 'V G Prasad', role: '' },
+    { name: 'Tarak Rajesh', role: '' },
+    { name: 'Abhijeet Ballurkar', role: '' },
+  ] as { name: string; role: string }[],
 };
 
 export const CONTACT = {

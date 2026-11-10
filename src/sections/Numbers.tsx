@@ -21,6 +21,16 @@ const OUTLINE: [number, number][] = [
 const P = ([lon, lat]: [number, number]): [number, number] => [(lon - 67.5) * 20, (37.8 - lat) * 20];
 const outlineD = 'M' + OUTLINE.map((p) => P(p).map((n) => n.toFixed(1)).join(',')).join(' L') + ' Z';
 const hub = P(STATS.cities.find((c) => c.name === STATS.hub)!.at);
+const links = STATS.cities.filter((c) => c.name !== STATS.hub).map((c) => {
+  const [x, y] = P(c.at);
+  const mx = (x + hub[0]) / 2 + (y - hub[1]) * 0.12;
+  const my = (y + hub[1]) / 2 - (x - hub[0]) * 0.12;
+  return { name: c.name, d: `M${hub[0]},${hub[1]} Q${mx},${my} ${x},${y}` };
+});
+// stacked copies of the outline under the top face = landmass thickness
+const DEPTH = Array.from({ length: 14 }, (_, i) => i + 1);
+// straight-on: slight lean back so the thickness shows, no sideways twist
+const TILT = { rotationX: 22, rotationZ: 0 };
 
 function Odometer({ value, suffix }: { value: number; suffix: string }) {
   const digits = String(value).split('').map(Number);
@@ -51,6 +61,8 @@ export function Numbers() {
     const to = (el: HTMLElement) => -((10 + Number(el.dataset.roll)) / 20) * 100;
     if (reduce) {
       rolls.forEach((el) => gsap.set(el, { yPercent: to(el) }));
+      gsap.set('[data-tilt]', TILT);
+      gsap.set('[data-pulses]', { opacity: 1 });
       return;
     }
     rolls.forEach((el, i) =>
@@ -61,10 +73,29 @@ export function Numbers() {
         scrollTrigger: { trigger: root.current, start: 'top 65%' },
       }),
     );
-    const tl = gsap.timeline({ scrollTrigger: { trigger: '[data-map]', start: 'top 75%', end: 'bottom 45%', scrub: 0.6 } });
-    tl.fromTo('[data-outline]', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1, ease: 'none' })
+    const tl = gsap.timeline({ scrollTrigger: { trigger: '[data-map]', start: 'top 80%', end: 'bottom 45%', scrub: 0.6 } });
+    tl.fromTo('[data-tilt]', { rotationX: 0, rotationZ: 0 }, { ...TILT, duration: 1.2, ease: 'power2.inOut' }, 0)
+      .fromTo('[data-depth]', { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'none' }, 0.2)
+      .fromTo('[data-outline]', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1, ease: 'none' }, 0)
       .fromTo('[data-link]', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, stagger: 0.06, ease: 'none' }, 0.3)
-      .fromTo('[data-city]', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.2, stagger: 0.06, ease: 'back.out(3)', transformOrigin: 'center' }, 0.4);
+      .fromTo('[data-city]', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.2, stagger: 0.06, ease: 'back.out(3)', transformOrigin: 'center' }, 0.4)
+      .fromTo('[data-pulses]', { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'none' }, 1.1);
+
+    // desktop: map leans toward the pointer
+    if (!window.matchMedia('(hover: hover)').matches) return;
+    const fig = document.querySelector<HTMLElement>('[data-map]')!;
+    const ry = gsap.quickTo('[data-tilt]', 'rotationY', { duration: 0.8, ease: 'power3.out' });
+    const move = (e: PointerEvent) => {
+      const r = fig.getBoundingClientRect();
+      ry(((e.clientX - r.left) / r.width - 0.5) * 16);
+    };
+    const leave = () => ry(0);
+    fig.addEventListener('pointermove', move);
+    fig.addEventListener('pointerleave', leave);
+    return () => {
+      fig.removeEventListener('pointermove', move);
+      fig.removeEventListener('pointerleave', leave);
+    };
   });
 
   return (
@@ -89,33 +120,50 @@ export function Numbers() {
             ))}
           </dl>
 
-          <figure data-map className="relative mx-auto w-full max-w-[22rem] md:max-w-[30rem] lg:max-w-[35rem]">
-            <svg viewBox="0 0 620 640" className="w-full overflow-visible" role="img" aria-label={`Map of India with ${STATS.cities.length} participating cities connected to ${STATS.hub}`}>
-              <path data-outline d={outlineD} pathLength={1} strokeDasharray="1 1" fill="var(--bg)" fillOpacity="0.5" stroke="var(--ink)" strokeWidth="1.5" strokeLinejoin="round" />
-              <g fill="none" stroke="var(--primary)" strokeWidth="1.4">
+          <figure data-map className="relative mx-auto w-full max-w-[22rem] [perspective:1400px] md:max-w-[34rem] lg:max-w-[38rem]">
+            <div data-tilt className="relative [transform-style:preserve-3d]">
+              {/* soft ground shadow + extruded sides */}
+              <svg viewBox="0 0 620 640" className="absolute inset-0 h-full w-full overflow-visible" style={{ transform: 'translateZ(-70px)' }} aria-hidden="true">
+                <path data-depth d={outlineD} fill="var(--ink)" opacity="0.18" style={{ filter: 'blur(14px)' }} />
+              </svg>
+              {DEPTH.map((i) => (
+                <svg key={i} viewBox="0 0 620 640" className="absolute inset-0 h-full w-full overflow-visible" style={{ transform: `translateZ(${-i * 2}px)` }} aria-hidden="true">
+                  <path data-depth d={outlineD} fill={i > DEPTH.length - 3 ? 'var(--ink)' : 'var(--deep)'} />
+                </svg>
+              ))}
+              <svg viewBox="0 0 620 640" className="relative w-full overflow-visible" role="img" aria-label={`Map of India with ${STATS.cities.length} participating cities connected to ${STATS.hub}`}>
+                <path data-outline d={outlineD} pathLength={1} strokeDasharray="1 1" fill="var(--bg)" stroke="var(--primary)" strokeWidth="2" strokeLinejoin="round" />
+                <g fill="none" stroke="var(--primary)" strokeWidth="1.4">
+                  {links.map((l) => (
+                    <path key={l.name} data-link d={l.d} pathLength={1} strokeDasharray="1 1" />
+                  ))}
+                </g>
+                {/* current: gold pulses flowing from each city into the hub */}
+                <g data-pulses fill="none" stroke="var(--secondary)" strokeWidth="3" strokeLinecap="round" opacity="0">
+                  {links.map((l, i) => (
+                    <path key={l.name} d={l.d} pathLength={1} className="current-pulse" style={{ animationDelay: `${(i * 0.37) % 2.4}s` }} />
+                  ))}
+                </g>
                 {STATS.cities.map((c) => {
-                  if (c.name === STATS.hub) return null;
                   const [x, y] = P(c.at);
-                  const mx = (x + hub[0]) / 2 + (y - hub[1]) * 0.12;
-                  const my = (y + hub[1]) / 2 - (x - hub[0]) * 0.12;
-                  return <path key={c.name} data-link d={`M${hub[0]},${hub[1]} Q${mx},${my} ${x},${y}`} pathLength={1} strokeDasharray="1 1" />;
+                  const isHub = c.name === STATS.hub;
+                  return (
+                    <g key={c.name}>
+                      {/* only the dot scales in, so its origin is the dot itself */}
+                      <circle data-city cx={x} cy={y} r={isHub ? 10 : 5} fill={isHub ? 'var(--secondary)' : 'var(--primary)'} stroke="var(--ink)" strokeWidth="1.5" />
+                      {isHub && (
+                        <g data-pulses opacity="0">
+                          <circle cx={x} cy={y} r="10" fill="none" stroke="var(--secondary)" strokeWidth="2" className="hub-ping" />
+                          <text x={x + 16} y={y + 5} className="mono" fontSize="16" fontWeight="700" fill="var(--ink)">
+                            {c.name.toUpperCase()}
+                          </text>
+                        </g>
+                      )}
+                    </g>
+                  );
                 })}
-              </g>
-              {STATS.cities.map((c) => {
-                const [x, y] = P(c.at);
-                const isHub = c.name === STATS.hub;
-                return (
-                  <g key={c.name} data-city>
-                    <circle cx={x} cy={y} r={isHub ? 10 : 5} fill={isHub ? 'var(--secondary)' : 'var(--primary)'} stroke="var(--ink)" strokeWidth="1.5" />
-                    {isHub && (
-                      <text x={x + 16} y={y + 5} className="mono" fontSize="14" fontWeight="700" fill="var(--ink)">
-                        {c.name.toUpperCase()}
-                      </text>
-                    )}
-                  </g>
-                );
-              })}
-            </svg>
+              </svg>
+            </div>
           </figure>
         </div>
       </div>

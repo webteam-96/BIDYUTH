@@ -10,7 +10,7 @@ export function Features() {
         <SectionLabel label={FEATURES.label} className="mb-6 lg:mb-8" />
         <SplitText title={FEATURES.title} accent={FEATURES.titleAccent} className="mb-8 lg:mb-10" />
         {FEATURES.items.length ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURES.items.map((f) => (
               <div key={f.title} className="rounded-[28px] border-2 border-ink p-5 shadow-[5px_5px_0_var(--ink)] md:p-6">
                 <h3 className="display mb-3 text-display-xs">{f.title}</h3>
