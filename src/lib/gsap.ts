@@ -31,9 +31,11 @@ export function scrollToHash(hash: string) {
   // pixel target, not the element: Lenis re-resolves an element mid-scroll and pinned sections shift it
   // pinned sections go position:fixed, so measure their in-flow pin-spacer, not the section itself
   const box = el.parentElement?.classList.contains('pin-spacer') ? el.parentElement : el;
-  if (lenis) lenis.scrollTo(hash === '#top' ? 0 : box.getBoundingClientRect().top + window.scrollY, { duration: 1.4 });
-  else if (hash === '#top') window.scrollTo({ top: 0, behavior: 'smooth' });
-  else el.scrollIntoView({ behavior: 'smooth' });
+  const y = hash === '#top' ? 0 : box.getBoundingClientRect().top + window.scrollY;
+  // force: a stopped Lenis (preloader / menu lock not yet released) otherwise ignores scrollTo silently
+  if (lenis) lenis.scrollTo(y, { duration: 1.4, force: true });
+  // no Lenis = reduced motion: jump instantly (native smooth scroll gets cut short by pin refreshes)
+  else window.scrollTo({ top: y, behavior: 'instant' as ScrollBehavior });
 }
 
 export const EASE = { out: 'power3.out', inOut: 'power3.inOut', elastic: 'elastic.out(1, 0.45)' };

@@ -32,7 +32,7 @@ export function About() {
     <section ref={root} id="about" data-bg="var(--bg)" className="relative px-4 py-20 md:px-8 lg:flex lg:min-h-[100svh] lg:items-center lg:py-24">
       <div className="mx-auto w-full max-w-[1400px]">
         <SectionLabel label={ABOUT.label} className="mb-8 lg:mb-12" />
-        <p data-manifesto className="display max-w-[22ch] text-manifesto tracking-[-0.03em]">
+        <p data-manifesto className="display max-w-[28ch] text-manifesto tracking-[-0.03em]">
           {words.map(({ w, hl }, i) => (
             <span key={i} data-w className="relative inline-block">
               {hl ? (
