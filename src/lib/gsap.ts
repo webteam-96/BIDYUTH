@@ -28,7 +28,8 @@ export const getLenis = () => lenis;
 export function scrollToHash(hash: string) {
   const el = hash === '#top' ? document.body : (document.querySelector(hash) as HTMLElement | null);
   if (!el) return;
-  if (lenis) lenis.scrollTo(hash === '#top' ? 0 : el, { duration: 1.4 });
+  // pixel target, not the element: Lenis re-resolves an element mid-scroll and pinned sections shift it
+  if (lenis) lenis.scrollTo(hash === '#top' ? 0 : el.getBoundingClientRect().top + window.scrollY, { duration: 1.4 });
   else if (hash === '#top') window.scrollTo({ top: 0, behavior: 'smooth' });
   else el.scrollIntoView({ behavior: 'smooth' });
 }

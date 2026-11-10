@@ -127,8 +127,7 @@ export const FEATURES = {
   label: 'Highlights',
   title: 'Plugged in from',
   titleAccent: 'minute one',
-  comingSoon: 'Event highlights will be announced here soon.',
-  // add { title, body } entries to show the cards instead of "Coming soon"
+  // event highlights shown as cards
   items: [
     { title: 'Live KYT sessions', body: 'KYT sessions run live with members from 23 cities and 14 states.' },
     { title: 'Quality speakers', body: 'Talks from business leaders and achievers from across the community.' },
