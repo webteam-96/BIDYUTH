@@ -5,7 +5,6 @@ import { useLenis } from './hooks/useLenis';
 import { useReducedMotion } from './hooks/useReducedMotion';
 import { priceLabel, useActivePhase } from './hooks/useActivePhase';
 import { Preloader } from './components/Preloader';
-import { Cursor } from './components/Cursor';
 import { Nav } from './components/Nav';
 import { ChargeMeter } from './components/ChargeMeter';
 import { CurrentLines } from './components/CurrentLines';
@@ -119,7 +118,6 @@ export default function App() {
         {UI.skip}
       </a>
       <Preloader onDone={() => setReady(true)} />
-      <Cursor />
       <ChargeMeter />
       <Nav />
       <main id="main" className="relative">
