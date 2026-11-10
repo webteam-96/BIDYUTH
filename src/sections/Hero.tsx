@@ -5,7 +5,7 @@ import { useScrollTrigger } from '../hooks/useScrollTrigger';
 import { useActivePhase } from '../hooks/useActivePhase';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import { Countdown } from '../components/Countdown';
-import { Bolt, MagneticButton } from '../components/MagneticButton';
+import { MagneticButton } from '../components/MagneticButton';
 
 const HeroLightning = lazy(() => import('../components/HeroLightning'));
 
@@ -61,13 +61,9 @@ export function Hero({ ready }: { ready: boolean }) {
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col">
         <div className="relative flex flex-1 flex-col items-center justify-center py-8 lg:py-10">
-          {/* w-fit: the badge/date row spans exactly the wordmark */}
+          {/* w-fit: the date row spans exactly the wordmark */}
           <div data-title className="relative mx-auto w-fit">
-            <div className="mb-3 flex items-end justify-between gap-4 lg:mb-5">
-              <p data-tag className="mono flex items-center gap-2 text-meta font-bold">
-                <Bolt className="h-4 w-4 text-secondary" />
-                {HERO.badge}
-              </p>
+            <div className="mb-3 flex items-end justify-end gap-4 lg:mb-5">
               <time data-tag dateTime={HERO.date.iso} className="text-right">
                 <span className="display block text-display-sm">{HERO.date.range}</span>
                 <span className="mono mt-1 block text-meta">{HERO.date.monthYear}</span>
@@ -92,18 +88,18 @@ export function Hero({ ready }: { ready: boolean }) {
           </div>
         </div>
 
-        <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:justify-center md:gap-4">
+        <div className="flex flex-col items-stretch gap-3 md:items-center md:gap-4">
+          {active.deadline && (
+            <div data-rise className="flex flex-col items-center gap-2 rounded-3xl border border-ink/20 bg-bg/75 px-5 py-3 backdrop-blur">
+              <span className="mono whitespace-nowrap text-label">{HERO.countdownLabel}</span>
+              <Countdown to={active.deadline} />
+            </div>
+          )}
           <div data-rise className="w-full md:w-auto">
             <MagneticButton href={URLS.REGISTRATION_URL} className="w-full text-lead md:w-auto">
               {HERO.cta}
             </MagneticButton>
           </div>
-          {active.deadline && (
-            <div data-rise className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-3xl border border-ink/20 bg-bg/75 px-5 py-3 backdrop-blur md:flex-nowrap md:justify-start md:rounded-full">
-              <span className="mono whitespace-nowrap text-label">{HERO.countdownLabel}</span>
-              <Countdown to={active.deadline} />
-            </div>
-          )}
         </div>
 
         <ul data-rise className="mono mt-6 flex flex-col items-center gap-1 border-t border-line pt-3 text-center text-meta md:mt-8 md:grid md:grid-cols-2 md:gap-0 md:pt-0 md:text-left">

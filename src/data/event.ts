@@ -66,7 +66,6 @@ export const HERO = {
   meta: ['Palace Grounds, Bengaluru', 'Flagship event of BBB'],
   cta: 'Register Now',
   countdownLabel: 'Early bird ends in',
-  badge: 'Early Bird',
   date: { range: '29–30', monthYear: 'January 2027', iso: '2027-01-29' },
 };
 
