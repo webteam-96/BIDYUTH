@@ -78,7 +78,6 @@ body {
 @supports (overflow: clip) {
   body { overflow-x: clip; }
 }
-body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 
 ::selection { background: var(--secondary); color: var(--ink); }
 
