@@ -16,8 +16,7 @@ export type Phase = {
 };
 
 export const URLS = {
-  // PLACEHOLDER: registration form is built separately
-  REGISTRATION_URL: 'https://example.com/register',
+  REGISTRATION_URL: 'https://kaizenevents.live/register/bbb-bidyuth-2027',
   // PLACEHOLDER: partner enquiry form or mailto
   PARTNER_ENQUIRY_URL: 'mailto:partners@example.com?subject=Bidyuth%202027%20Partner%20Enquiry',
   // PLACEHOLDER: Kaizen Events app store links
@@ -52,9 +51,13 @@ export const EVENT = {
 export const NAV = {
   links: [
     { label: 'About', href: '#about' },
+    { label: 'Highlights', href: '#highlights' },
     { label: 'Pricing', href: '#pricing' },
+    { label: 'Speakers', href: '#speakers' },
     { label: 'Schedule', href: '#schedule' },
+    { label: 'Venue', href: '#venue' },
     { label: 'Partner', href: '#partner' },
+    { label: 'Committee', href: '#committee' },
     { label: 'FAQ', href: '#faq' },
   ],
   cta: 'Register',

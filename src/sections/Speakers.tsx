@@ -72,14 +72,14 @@ export function Speakers() {
 
   const first = SPEAKERS.items[0];
   return (
-    <section ref={root} data-bg="var(--bg-alt)" className={`relative overflow-hidden py-20 ${SPEAKERS.ready ? 'lg:flex lg:min-h-[100svh] lg:flex-col lg:justify-center lg:py-12' : 'lg:py-24'}`}>
-      <div className="mx-auto mb-8 w-full max-w-[1400px] px-4 md:px-8 lg:mb-10">
+    <section id="speakers" ref={root} data-bg="var(--bg-alt)" className={`relative overflow-hidden py-20 ${SPEAKERS.ready ? 'lg:flex lg:min-h-[100svh] lg:flex-col lg:justify-center lg:py-12' : 'lg:py-24'}`}>
+      <div className="mx-auto mb-8 w-full max-w-[1464px] px-4 md:px-8 lg:mb-10">
         <SectionLabel label={SPEAKERS.label} className="mb-6 lg:mb-8" />
         <SplitText title={SPEAKERS.title} accent={SPEAKERS.titleAccent} />
       </div>
 
       {!SPEAKERS.ready ? (
-        <div data-reveal className="mx-auto w-full max-w-[1400px] px-4 md:px-8">
+        <div data-reveal className="mx-auto w-full max-w-[1464px] px-4 md:px-8">
           <ComingSoon text={SPEAKERS.comingSoon} />
         </div>
       ) : (

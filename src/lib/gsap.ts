@@ -29,7 +29,9 @@ export function scrollToHash(hash: string) {
   const el = hash === '#top' ? document.body : (document.querySelector(hash) as HTMLElement | null);
   if (!el) return;
   // pixel target, not the element: Lenis re-resolves an element mid-scroll and pinned sections shift it
-  if (lenis) lenis.scrollTo(hash === '#top' ? 0 : el.getBoundingClientRect().top + window.scrollY, { duration: 1.4 });
+  // pinned sections go position:fixed, so measure their in-flow pin-spacer, not the section itself
+  const box = el.parentElement?.classList.contains('pin-spacer') ? el.parentElement : el;
+  if (lenis) lenis.scrollTo(hash === '#top' ? 0 : box.getBoundingClientRect().top + window.scrollY, { duration: 1.4 });
   else if (hash === '#top') window.scrollTo({ top: 0, behavior: 'smooth' });
   else el.scrollIntoView({ behavior: 'smooth' });
 }

@@ -29,8 +29,8 @@ export function Venue() {
   });
 
   return (
-    <section ref={root} data-bg="var(--bg-alt)" className="relative overflow-hidden py-20 lg:py-28">
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+    <section id="venue" ref={root} data-bg="var(--bg-alt)" className="relative overflow-hidden py-20 lg:py-28">
+      <div className="mx-auto max-w-[1464px] px-4 md:px-8">
         <SectionLabel label={VENUE.label} className="mb-8 lg:mb-10" />
       </div>
 
@@ -44,7 +44,7 @@ export function Venue() {
         {VENUE.big}, {VENUE.city}
       </h2>
 
-      <div className="mx-auto mt-10 grid max-w-[1400px] gap-10 px-4 md:px-8 lg:mt-14 lg:grid-cols-[1.2fr_1fr]">
+      <div className="mx-auto mt-10 grid max-w-[1464px] gap-10 px-4 md:px-8 lg:mt-14 lg:grid-cols-[1.2fr_1fr]">
         <figure className="flex flex-col gap-4">
         <div className="relative h-[24rem] md:h-[35rem]">
           {VENUE.images.map((img, i) => (

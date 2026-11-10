@@ -69,7 +69,7 @@ export function Nav() {
           <a href="#top" onClick={(e) => go(e, '#top')} className="flex min-h-11 items-center gap-2" aria-label={UI.home}>
             <img src={EVENT.logos.bidyuth} alt="" className="h-8 w-auto md:h-9" width={2036} height={490} />
           </a>
-          <ul className="hidden items-center gap-7 lg:flex">
+          <ul className="hidden items-center gap-5 xl:flex 2xl:gap-7">
             {NAV.links.map((l) => (
               <li key={l.href}>
                 <a href={l.href} onClick={(e) => go(e, l.href)} aria-label={l.label} className="mono flex min-h-11 min-w-11 items-center justify-center text-label hover:text-secondary">
@@ -91,7 +91,7 @@ export function Nav() {
             <button
               ref={menuBtn}
               type="button"
-              className="mono min-h-11 rounded-full border border-line px-4 text-label lg:hidden"
+              className="mono min-h-11 rounded-full border border-line px-4 text-label xl:hidden"
               aria-expanded={open}
               aria-controls="mobile-menu"
               onClick={() => setOpen((o) => !o)}
@@ -109,14 +109,14 @@ export function Nav() {
             role="dialog"
             aria-modal="true"
             aria-label={UI.menuOpen}
-            className="fixed inset-0 z-[71] flex flex-col bg-bg px-4 pb-8 pt-24 lg:hidden"
+            className="fixed inset-0 z-[71] flex flex-col bg-bg px-4 pb-8 pt-24 xl:hidden"
             initial={{ clipPath: 'inset(0 0 100% 0)' }}
             animate={{ clipPath: 'inset(0 0 0% 0)' }}
             exit={{ clipPath: 'inset(0 0 100% 0)' }}
             transition={{ duration: 0.5, ease: [0.7, 0, 0.2, 1] }}
           >
             <motion.ul
-              className="flex flex-1 flex-col justify-center gap-1"
+              className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto [justify-content:safe_center]"
               initial="hidden"
               animate="show"
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07, delayChildren: 0.2 } } }}
