@@ -2,13 +2,10 @@ import { useRef } from 'react';
 import { FINAL, URLS } from '../data/event';
 import { gsap, ScrollTrigger } from '../lib/gsap';
 import { useScrollTrigger } from '../hooks/useScrollTrigger';
-import { priceLabel, useActivePhase } from '../hooks/useActivePhase';
-import { Countdown } from '../components/Countdown';
 import { MagneticButton } from '../components/MagneticButton';
 
 export function FinalCTA() {
   const root = useRef<HTMLElement>(null);
-  const { active } = useActivePhase();
 
   useScrollTrigger(root, ({ reduce, desktop }) => {
     const el = root.current!;
@@ -85,17 +82,7 @@ export function FinalCTA() {
           {FINAL.big}
         </h2>
         <p className="serif mt-6 text-display-xs lg:text-[clamp(1.6rem,3.4vw,3rem)]">{FINAL.sub}</p>
-        <div className="mt-10 flex flex-col items-stretch gap-6 md:items-center">
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <span className="sticker -rotate-3 bg-bg">
-              {active.label} · {priceLabel(active)}
-            </span>
-            {active.deadline && (
-              <span className="rounded-3xl bg-ink px-5 py-3 text-bg">
-                <Countdown to={active.deadline} tone="light" />
-              </span>
-            )}
-          </div>
+        <div className="mt-12 flex flex-col items-stretch gap-10 md:items-center">
           <MagneticButton href={URLS.REGISTRATION_URL} variant="ink" className="w-full px-12 py-5 text-lead md:w-auto md:py-6" strength={0.5}>
             {FINAL.cta}
           </MagneticButton>

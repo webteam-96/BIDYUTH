@@ -4,7 +4,7 @@ import { EVENT, HERO, MARQUEE, PRELOADER } from '../data/event';
 
 const NS = 'http://www.w3.org/2000/svg';
 // Only two panel tones, ~0.05 apart in relative luminance, so rapid cuts never read as flashes.
-const TONES = ['#FFB36B', '#7CC4EE'];
+const TONES = ['#F6EEDD', '#CFE8E6'];
 
 function el<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number>, text?: string) {
   const n = document.createElementNS(NS, tag);
@@ -19,9 +19,9 @@ function panel(phrase: string, i: number) {
   g.append(
     el('rect', { x: 0, y: 0, width: 1000, height: 240, fill: TONES[i % 2] }),
     el('rect', { x: 0, y: 0, width: 1000, height: 240, fill: 'url(#pl-dots)' }),
-    el('rect', { x: -50, y: 40 + (i % 3) * 50, width: 1100, height: 10, fill: '#161412', transform: `rotate(${i % 2 ? -8 : 7} 500 120)` }),
+    el('rect', { x: -50, y: 40 + (i % 3) * 50, width: 1100, height: 10, fill: '#1F2A2E', transform: `rotate(${i % 2 ? -8 : 7} 500 120)` }),
   );
-  const t = el('text', { x: i % 2 ? 40 : 980, y: 175, 'text-anchor': i % 2 ? 'start' : 'end', class: 'pl-word', fill: '#161412', 'font-size': 150, 'data-phrase': '' }, phrase);
+  const t = el('text', { x: i % 2 ? 40 : 980, y: 175, 'text-anchor': i % 2 ? 'start' : 'end', class: 'pl-word', fill: '#1F2A2E', 'font-size': 150, 'data-phrase': '' }, phrase);
   g.append(t);
   return g;
 }

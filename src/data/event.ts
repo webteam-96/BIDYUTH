@@ -40,6 +40,9 @@ export const EVENT = {
   city: 'Bengaluru',
   venueFull: 'Palace Grounds, Bengaluru',
   logos: {
+    // cut from the brand deck JPG; swap for vector files when available
+    bidyuth: './logos/bidyuth.png',
+    bidyuthWhite: './logos/bidyuth-white.png',
     // PLACEHOLDER logos
     bbb: './logos/bbb.svg',
     kaizen: './logos/kaizen.svg',
@@ -61,7 +64,6 @@ export const PRELOADER = { label: 'Charging', aria: 'Loading Bidyuth 2027' };
 
 export const HERO = {
   meta: ['Palace Grounds, Bengaluru', 'Flagship event of BBB'],
-  line: '3000 minds. One current.',
   cta: 'Register Now',
   countdownLabel: 'Early bird ends in',
   badge: 'Early Bird',
@@ -125,26 +127,9 @@ export const FEATURES = {
   label: 'Highlights',
   title: 'Plugged in from',
   titleAccent: 'minute one',
-  items: [
-    { title: 'Live KYT dashboard', body: 'Opportunities, top givers and best chapters, live on the main LED.' },
-    { title: 'KYT appointments', body: 'Book one-to-one slots with fellow delegates.' },
-    { title: 'QR code badge', body: 'One scan for entry, kit collection and meals.' },
-    { title: 'Instant confirmation', body: 'Your QR badge on Email and WhatsApp the moment you pay.' },
-    { title: 'Digital business cards', body: 'Exchange cards with every delegate you meet.' },
-    { title: 'Delegate-only app', body: 'Participants, schedule, speakers, gallery and KYT in one app.' },
-  ],
-  dashboard: {
-    title: 'Live KYT Dashboard',
-    caption: 'Live on the main LED during the KYT session',
-    // PLACEHOLDER demo values for the mock
-    counter: { label: 'Opportunities passed', value: 1284 },
-    leaders: [
-      { label: 'Top giver', value: 'TBA' },
-      { label: 'Top receiver', value: 'TBA' },
-      { label: 'Best chapter', value: 'TBA' },
-      { label: 'Best zone', value: 'TBA' },
-    ],
-  },
+  comingSoon: 'Event highlights will be announced here soon.',
+  // add { title, body } entries to show the cards instead of "Coming soon"
+  items: [] as { title: string; body: string }[],
 };
 
 export const PRICING = {
@@ -155,10 +140,8 @@ export const PRICING = {
   closed: 'Closed',
   activeLabel: 'Live now',
   upcoming: 'Next',
-  noteLabel: 'Note',
   dotsLabel: 'Show pricing phase',
   endsIn: 'Ends in',
-  note: 'Registration fee does not include lodging. Lodging support will be extended separately after registration.',
   cta: 'Register Now',
   phases: [
     { id: 'eb1', label: 'Early Bird 1', deadline: '2026-11-30T23:59:59+05:30', deadlineLabel: 'On or before 30 Nov 2026', price: 3555 },
@@ -171,6 +154,9 @@ export const PRICING = {
 
 export const SPEAKERS = {
   label: 'Speakers',
+  // flip to true once real speakers are in `items`
+  ready: false,
+  comingSoon: 'The speaker line-up will be announced here soon.',
   mobileTitle: 'Speakers announcing soon',
   title: 'Voices with',
   titleAccent: 'voltage',
@@ -186,6 +172,9 @@ export const SCHEDULE = {
   label: 'Schedule',
   title: 'Two days.',
   titleAccent: 'Full charge.',
+  // flip to true once the real agenda is in `days`
+  ready: false,
+  comingSoon: 'The two-day agenda will be published here soon.',
   placeholderNote: 'Tentative agenda — final timings to be announced.',
   tablistLabel: 'Event days',
   detailPlaceholder: 'Session details to be announced.', // PLACEHOLDER per-session details
@@ -230,11 +219,12 @@ export const VENUE = {
   body: 'One of Bengaluru’s grandest event grounds — open, central and built for crowds of thousands.',
   address: 'Palace Grounds, Jayamahal Road, Vasanth Nagar, Bengaluru, Karnataka', // PLACEHOLDER: confirm gate / hall
   mapsCta: 'Open in Google Maps',
-  // PLACEHOLDER: venue photography (WebP/AVIF)
+  // Wikimedia Commons, CC BY-SA: keep the credits visible on the page
+  photosLabel: 'Venue photos',
   images: [
-    { src: '', srcSet: '', alt: 'Palace Grounds — main lawn (placeholder)' },
-    { src: '', srcSet: '', alt: 'Palace Grounds — event hall (placeholder)' },
-    { src: '', srcSet: '', alt: 'Palace Grounds — entrance (placeholder)' },
+    { src: './venue/palace-front-1600.webp', srcSet: './venue/palace-front-800.webp 800w, ./venue/palace-front-1600.webp 1600w', alt: 'Bangalore Palace front facade and gardens', credit: { who: 'Basavarajmin21', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:BENGALURU_PALACE_FRONT.jpg' } },
+    { src: './venue/palace-lawn-1600.webp', srcSet: './venue/palace-lawn-800.webp 800w, ./venue/palace-lawn-1600.webp 1600w', alt: 'Bangalore Palace seen across the lawn', credit: { who: 'Shubham Shah', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Bengaluru_Palace_Front_part.jpg' } },
+    { src: './venue/palace-tower-1600.webp', srcSet: './venue/palace-tower-800.webp 800w, ./venue/palace-tower-1600.webp 1600w', alt: 'Turrets and ivy-covered walls of Bangalore Palace', credit: { who: 'Sankalp Varshney', license: 'CC BY-SA 3.0', url: 'https://commons.wikimedia.org/wiki/File:Bangalore_Palace,_Bangalore.JPG' } },
   ],
 };
 
@@ -243,7 +233,6 @@ export const PARTNERS = {
   title: 'Plug your brand',
   titleAccent: 'into 3000+ businesses',
   cta: 'Enquire Now',
-  note: 'GST invoices available for all bookings — GSTIN and billing details are captured at booking.',
   items: [
     { title: 'Stalls', body: 'Multiple categories and sizes on the expo floor, right in the delegate flow.' },
     { title: 'Standees', body: 'Premium locations across the venue — entry, lounges and meal zones.' },
@@ -294,6 +283,9 @@ export const FINAL = {
 
 export const COMMITTEE = {
   label: 'Organising committee',
+  // flip to true once real members are in `members`
+  ready: false,
+  comingSoon: 'Committee members will be announced here soon.',
   // PLACEHOLDER committee grid
   members: Array.from({ length: 8 }, (_, i) => ({ name: 'To be announced', role: `Committee member ${i + 1}` })),
 };
@@ -311,12 +303,15 @@ export const CONTACT = {
   backToTop: 'Back to top',
   contactLabel: 'Contact',
   followLabel: 'Follow',
-  copyright: '© 2027 Forum of Business By Brahmins. All rights reserved.',
+  copyright: '© 2027 Forum of Business By Brahmins',
+  footerNavLabel: 'Footer',
+  techLabel: 'Technology partner',
 };
 
 /** Interface strings (screen-reader labels, controls). */
 export const UI = {
   skip: 'Skip to content',
+  comingSoon: 'Coming soon',
   navLabel: 'Primary',
   menuOpen: 'Menu',
   menuClose: 'Close',

@@ -28,7 +28,9 @@ function Odometer({ value, suffix }: { value: number; suffix: string }) {
     <span className="inline-flex leading-none" aria-hidden="true">
       {digits.map((d, i) => (
         <span key={i} className="relative inline-block h-[1em] overflow-hidden">
-          <span data-roll={d} className="flex flex-col">
+          {/* invisible final digit sets the column width, so a "1" doesn't sit in a "0"-wide slot */}
+          <span className="invisible">{d}</span>
+          <span data-roll={d} className="absolute inset-x-0 top-0 flex flex-col items-center">
             {Array.from({ length: 20 }, (_, n) => (
               <span key={n} className="h-[1em]">{n % 10}</span>
             ))}
@@ -73,9 +75,10 @@ export function Numbers() {
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
           <dl className="grid grid-cols-2 gap-x-4 gap-y-8 md:gap-x-6 md:gap-y-12">
             {STATS.items.map((s) => (
-              <div key={s.label} className="border-t border-ink pt-4">
+              <div key={s.label} className="@container border-t border-ink pt-4">
                 <dt className="mono mb-2 text-label md:mb-3">{s.label}</dt>
-                <dd className="display text-[clamp(3rem,13vw,8rem)] lg:text-[clamp(3.5rem,8vw,8rem)]">
+                {/* 26cqw keeps the widest value ("3000+", 5 Marcellus glyphs) inside its cell */}
+                <dd className="display text-[min(26cqw,8rem)]">
                   <span className="sr-only">
                     {s.value}
                     {s.suffix}

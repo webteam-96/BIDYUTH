@@ -21,7 +21,7 @@ function Card({ p, isNext }: { p: PhaseView; isNext: boolean }) {
       <div className="mb-auto flex min-h-8 items-center justify-between gap-2">
         <h3 className="mono text-label font-bold">{p.label}</h3>
         {active && <span className="sticker rotate-3 bg-bg">{PRICING.activeLabel}</span>}
-        {isNext && <span className="sticker -rotate-2 bg-primary-2 !shadow-none">{PRICING.upcoming}</span>}
+        {isNext && <span className="sticker -rotate-2 bg-bg !shadow-none">{PRICING.upcoming}</span>}
       </div>
       <p className={`display my-6 tabular-nums ${p.price == null ? 'text-display-sm' : 'text-price'} ${closed ? 'line-through decoration-[3px]' : ''}`}>{priceLabel(p)}</p>
       <p className="mono text-label">{p.deadlineLabel}</p>
@@ -47,7 +47,9 @@ function Card({ p, isNext }: { p: PhaseView; isNext: boolean }) {
 export function Pricing() {
   const root = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
-  const { list, active } = useActivePhase();
+  const { list: phases, active } = useActivePhase();
+  // phases without a price yet (Regular = TBA) stay hidden until a price is set
+  const list = phases.filter((p) => p.price != null);
   const activeIdx = list.findIndex((p) => p.status === 'active');
   const [slide, setSlide] = useState(activeIdx);
 
@@ -99,7 +101,7 @@ export function Pricing() {
   const firstUpcoming = list.findIndex((p) => p.status === 'upcoming');
 
   return (
-    <section ref={root} id="pricing" data-bg="var(--primary)" className="relative overflow-hidden bg-primary px-4 py-20 md:px-8 lg:flex lg:min-h-[100svh] lg:items-center lg:py-12">
+    <section ref={root} id="pricing" data-bg="var(--primary-2)" className="relative overflow-hidden bg-primary-2 px-4 py-20 md:px-8 lg:flex lg:min-h-[100svh] lg:items-center lg:py-12">
       <div className="mx-auto w-full max-w-[1400px]">
         <SectionLabel label={PRICING.label} className="mb-6 lg:mb-8" />
         <div className="mb-8 flex flex-col justify-between gap-4 lg:mb-10 lg:flex-row lg:items-end lg:gap-6">
@@ -108,7 +110,7 @@ export function Pricing() {
         </div>
         <div
           ref={track}
-          className="no-scrollbar isolate -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[12vw] pb-6 pt-2 md:px-8 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0"
+          className="no-scrollbar isolate -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[12vw] pb-6 pt-2 md:px-8 lg:mx-0 lg:grid lg:grid-cols-3 lg:overflow-visible lg:px-0"
         >
           {list.map((p, i) => (
             <Card key={p.id} p={p} isNext={i === firstUpcoming} />
@@ -128,11 +130,7 @@ export function Pricing() {
             </button>
           ))}
         </div>
-        <div className="mt-6 flex flex-col items-stretch justify-between gap-6 border-t border-ink/30 pt-6 md:mt-8 md:flex-row md:items-center">
-          <p className="max-w-[60ch] text-body">
-            <strong className="mono mr-2 text-label">{PRICING.noteLabel}</strong>
-            {PRICING.note}
-          </p>
+        <div className="mt-6 flex flex-col items-stretch gap-6 border-t border-ink/30 pt-6 md:mt-8 md:flex-row md:justify-end">
           <MagneticButton href={URLS.REGISTRATION_URL} className="shrink-0 text-lead">
             {PRICING.cta} · {priceLabel(active)}
           </MagneticButton>

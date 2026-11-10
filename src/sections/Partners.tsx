@@ -48,7 +48,6 @@ export function Partners() {
             </article>
           ))}
         </div>
-        <p className="mono mt-8 text-label opacity-80">{PARTNERS.note}</p>
       </div>
     </section>
   );

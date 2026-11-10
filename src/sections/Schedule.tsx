@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { SCHEDULE } from '../data/event';
 import { SectionLabel, SplitText } from '../components/SplitText';
+import { ComingSoon } from '../components/ComingSoon';
 
 export function Schedule() {
   const [day, setDay] = useState(SCHEDULE.days[0].id);
@@ -24,6 +25,13 @@ export function Schedule() {
     <section id="schedule" data-bg="var(--bg)" className="relative px-4 py-20 md:px-8 lg:py-28">
       <div className="mx-auto max-w-[1400px]">
         <SectionLabel label={SCHEDULE.label} className="mb-6 lg:mb-8" />
+        {!SCHEDULE.ready ? (
+          <>
+            <SplitText title={SCHEDULE.title} accent={SCHEDULE.titleAccent} className="mb-8 lg:mb-12" />
+            <ComingSoon text={SCHEDULE.comingSoon} />
+          </>
+        ) : (
+        <>
         <div className="mb-8 flex flex-col justify-between gap-6 lg:mb-12 lg:flex-row lg:items-end lg:gap-8">
           <SplitText title={SCHEDULE.title} accent={SCHEDULE.titleAccent} />
           <div role="tablist" aria-label={SCHEDULE.tablistLabel} className="grid grid-cols-2 gap-1 rounded-full border-2 border-ink p-1 lg:flex lg:gap-2" onKeyDown={onKey}>
@@ -100,6 +108,8 @@ export function Schedule() {
           </motion.div>
         </AnimatePresence>
         <p className="mono mt-6 text-label opacity-70">{SCHEDULE.placeholderNote}</p>
+        </>
+        )}
       </div>
     </section>
   );

@@ -20,8 +20,8 @@ import { Speakers } from './sections/Speakers';
 import { Schedule } from './sections/Schedule';
 import { Venue } from './sections/Venue';
 import { Partners } from './sections/Partners';
-import { AppTeaser } from './sections/AppTeaser';
-import { TechPartner } from './sections/TechPartner';
+// import { AppTeaser } from './sections/AppTeaser';
+import { Committee } from './sections/Committee';
 import { FAQ } from './sections/FAQ';
 import { FinalCTA } from './sections/FinalCTA';
 import { Footer } from './sections/Footer';
@@ -137,8 +137,8 @@ export default function App() {
         <Schedule />
         <Venue />
         <Partners />
-        <AppTeaser />
-        <TechPartner />
+        {/* hidden: delegate app teaser */}
+        <Committee />
         <FAQ />
         <FinalCTA />
       </main>

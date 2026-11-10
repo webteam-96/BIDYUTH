@@ -6,9 +6,9 @@ import { SectionLabel } from '../components/SplitText';
 import { Bolt, MagneticButton } from '../components/MagneticButton';
 
 const PLACEHOLDER_BG = [
-  'linear-gradient(135deg,#b9e0f7 0%,#7cc4ee 60%,#4f9fcf 100%)',
-  'linear-gradient(160deg,#ffb36b 0%,#f28c28 100%)',
-  'linear-gradient(120deg,#eae2d3 0%,#cfc3ad 100%)',
+  'linear-gradient(135deg,#cfe8e6 0%,#1a9a94 60%,#0f5f63 100%)',
+  'linear-gradient(160deg,#f6eedd 0%,#e8a317 100%)',
+  'linear-gradient(120deg,#f6eedd 0%,#cfe8e6 100%)',
 ];
 
 export function Venue() {
@@ -57,7 +57,7 @@ export function Venue() {
               style={{ background: PLACEHOLDER_BG[i] }}
             >
               {img.src ? (
-                <img src={img.src} srcSet={img.srcSet || undefined} sizes="(min-width: 1024px) 40vw, 90vw" alt={img.alt} loading="lazy" className="h-full w-full object-cover" />
+                <img src={img.src} srcSet={img.srcSet || undefined} sizes="(min-width: 1024px) 40vw, 90vw" alt={img.alt} title={`Photo: ${img.credit.who}, ${img.credit.license}, Wikimedia Commons`} loading="lazy" className="h-full w-full object-cover" />
               ) : (
                 <figcaption className="mono absolute bottom-3 left-4 right-4 text-label">{img.alt}</figcaption>
               )}

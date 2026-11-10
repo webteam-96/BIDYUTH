@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from '../lib/gsap';
 import { useMedia, useReducedMotion } from '../hooks/useReducedMotion';
 
-const TANGERINE = ['rgb(242, 140, 40)', 'rgb(255, 179, 107)'];
+const TANGERINE = ['rgb(232, 163, 23)'];
 
 /** True if the element or a near ancestor has a tangerine background. */
 function onTangerine(el: HTMLElement | null) {
@@ -85,7 +85,7 @@ function CursorInner() {
       <div ref={dot} className="absolute left-0 top-0" style={{ transform: 'translate(-100px,-100px)' }}>
         <div
           className={`flex h-[88px] w-[88px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full transition-[transform,background-color] duration-300 ease-out ${
-            invert ? 'bg-ink shadow-[0_0_0_3px_var(--bg)]' : 'bg-secondary shadow-[0_0_24px_rgba(242,140,40,0.55)]'
+            invert ? 'bg-ink shadow-[0_0_0_3px_var(--bg)]' : 'bg-secondary shadow-[0_0_24px_rgba(232,163,23,0.55)]'
           }`}
           style={{ transform: `translate(-50%,-50%) scale(${scale})` }}
         >

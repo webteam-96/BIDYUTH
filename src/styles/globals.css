@@ -2,30 +2,34 @@
 @import './fonts.css';
 
 :root {
-  --bg: #f4efe6;
-  --bg-alt: #eae2d3;
-  --ink: #161412;
-  --primary: #7cc4ee;
-  --primary-2: #b9e0f7;
-  --secondary: #f28c28;
-  --secondary-2: #ffb36b;
-  --line: rgba(22, 20, 18, 0.12);
+  --bg: #f4f8f9;
+  --bg-alt: #e3efee;
+  --ink: #1f2a2e;
+  --primary: #1a9a94;
+  --primary-2: #cfe8e6;
+  --secondary: #e8a317;
+  --secondary-2: #f6eedd;
+  --line: rgba(31, 42, 46, 0.12);
   --gutter: 1rem;
+  --deep: #0f5f63;
+  --bbb-red: #c1272d;
 }
 
 @theme {
-  --color-bg: #f4efe6;
-  --color-bg-alt: #eae2d3;
-  --color-ink: #161412;
-  --color-primary: #7cc4ee;
-  --color-primary-2: #b9e0f7;
-  --color-secondary: #f28c28;
-  --color-secondary-2: #ffb36b;
-  --color-line: rgba(22, 20, 18, 0.12);
-  --font-display: 'Clash Display', 'Arial Narrow', system-ui, sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-body: 'General Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Space Mono', ui-monospace, monospace;
+  --color-bg: #f4f8f9;
+  --color-bg-alt: #e3efee;
+  --color-ink: #1f2a2e;
+  --color-primary: #1a9a94;
+  --color-primary-2: #cfe8e6;
+  --color-secondary: #e8a317;
+  --color-secondary-2: #f6eedd;
+  --color-line: rgba(31, 42, 46, 0.12);
+  --color-deep: #0f5f63;
+  --color-bbb-red: #c1272d;
+  --font-display: 'Marcellus', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Nunito Sans', system-ui, sans-serif;
 
   /* Type scale — floors: label/meta/small 13px mobile → 14px desktop, body 16 → 18px */
   --text-label: clamp(0.8125rem, 0.7675rem + 0.17vw, 0.875rem);
@@ -80,9 +84,9 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 
 :focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; border-radius: 6px; }
 
-.display { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.04em; word-spacing: 0.08em; line-height: 0.85; }
-.serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.02em; }
-.mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; }
+.display { font-family: var(--font-display); font-weight: 400; letter-spacing: 0; line-height: 0.9; }
+.serif { font-family: var(--font-serif); font-style: italic; font-weight: 500; letter-spacing: 0; }
+.mono { font-family: var(--font-mono); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; }
 
 /* grain overlay */
 .grain {
@@ -90,7 +94,7 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.pl-word { font-family: var(--font-display); font-weight: 600; font-size: 236px; letter-spacing: -0.04em; }
+.pl-word { font-family: var(--font-display); font-weight: 400; font-size: 236px; }
 
 .outline-text { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
 
@@ -124,7 +128,7 @@ body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 .pulse-glow { position: relative; }
 .pulse-glow::after {
   content: ''; position: absolute; inset: -6px; border-radius: 34px; pointer-events: none; z-index: -1;
-  box-shadow: 0 0 0 6px rgba(242, 140, 40, 0.35), 0 0 60px rgba(242, 140, 40, 0.7);
+  box-shadow: 0 0 0 6px rgba(232, 163, 23, 0.35), 0 0 60px rgba(232, 163, 23, 0.7);
   animation: glow 2.4s ease-in-out infinite alternate;
 }
 @keyframes glow { from { opacity: 0.45; } to { opacity: 1; } }

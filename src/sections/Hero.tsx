@@ -73,7 +73,7 @@ export function Hero({ ready }: { ready: boolean }) {
                 <span className="mono mt-1 block text-meta">{HERO.date.monthYear}</span>
               </time>
             </div>
-            <h1 className="display relative select-none whitespace-nowrap text-center text-hero lg:text-hero-lg" aria-label={EVENT.fullName}>
+            <h1 className="display relative select-none whitespace-nowrap text-center text-hero text-primary lg:text-hero-lg" aria-label={EVENT.fullName}>
               <span aria-hidden="true" className="inline-flex">
                 {EVENT.name.split('').map((c, i) => (
                   <span key={i} data-char className="inline-block will-change-transform">
@@ -84,15 +84,12 @@ export function Hero({ ready }: { ready: boolean }) {
               <span
                 data-year
                 aria-hidden="true"
-                className="serif absolute -bottom-[0.34em] right-0 text-[0.42em] text-secondary [text-shadow:2px_2px_0_var(--ink)] lg:right-[0.68em] lg:[text-shadow:3px_3px_0_var(--ink)]"
+                className="serif absolute -bottom-[0.34em] right-0 text-[0.42em] text-secondary [text-shadow:2px_2px_0_var(--ink)] lg:right-[0.5em] lg:[text-shadow:3px_3px_0_var(--ink)]"
               >
                 {EVENT.year}
               </span>
             </h1>
           </div>
-          <p data-rise className="serif mt-[0.9em] text-center text-display-xs lg:mt-[0.6em] lg:text-[clamp(1.6rem,3.6vw,3.2rem)]">
-            {HERO.line}
-          </p>
         </div>
 
         <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:justify-center md:gap-4">
