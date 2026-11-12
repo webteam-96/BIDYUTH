@@ -22,8 +22,8 @@ export const URLS = {
   // PLACEHOLDER: Kaizen Events app store links
   APP_ANDROID: '#',
   APP_IOS: '#',
-  MAPS_LINK: 'https://www.google.com/maps/search/?api=1&query=Palace+Grounds+Bengaluru',
-  MAPS_EMBED: 'https://www.google.com/maps?q=Palace+Grounds,+Bengaluru&output=embed',
+  MAPS_LINK: 'https://www.google.com/maps/search/?api=1&query=White+Petals+Palace+Grounds+Bengaluru',
+  MAPS_EMBED: 'https://www.google.com/maps?q=White+Petals,+Palace+Grounds,+Bengaluru&output=embed',
 };
 
 export const EVENT = {
@@ -35,9 +35,9 @@ export const EVENT = {
   tagline: 'The flagship event of BBB',
   dateLabel: '29th & 30th January 2027',
   dateShort: '29–30 JAN 2027',
-  venue: 'Palace Grounds',
+  venue: 'White Petals, Palace Grounds',
   city: 'Bengaluru',
-  venueFull: 'Palace Grounds, Bengaluru',
+  venueFull: 'White Petals, Palace Grounds, Bengaluru',
   logos: {
     // cut from the brand deck JPG; swap for vector files when available
     bidyuth: './logos/bidyuth.svg',
@@ -66,7 +66,7 @@ export const NAV = {
 export const PRELOADER = { label: 'Charging', aria: 'Loading Bidyuth 2027' };
 
 export const HERO = {
-  meta: ['Palace Grounds, Bengaluru', 'Flagship event of BBB'],
+  meta: ['White Petals, Palace Grounds, Bengaluru', 'Flagship event of BBB'],
   cta: 'Register Now',
   countdownLabel: 'Early bird ends in',
   date: { range: '29–30', monthYear: 'January 2027', iso: '2027-01-29' },
@@ -223,7 +223,7 @@ export const VENUE = {
   big: 'PALACE GROUNDS',
   city: 'Bengaluru',
   body: 'One of Bengaluru’s grandest event grounds — open, central and built for crowds of thousands.',
-  address: 'Palace Grounds, Jayamahal Road, Vasanth Nagar, Bengaluru, Karnataka', // PLACEHOLDER: confirm gate / hall
+  address: 'White Petals, Palace Grounds, Jayamahal Road, Vasanth Nagar, Bengaluru, Karnataka',
   mapsCta: 'Open in Google Maps',
   // Wikimedia Commons, CC BY-SA: keep the credits visible on the page
   photosLabel: 'Venue photos',
@@ -291,21 +291,87 @@ export const COMMITTEE = {
   label: 'Event organising committee',
   ready: true,
   comingSoon: 'Committee members will be announced here soon.',
-  // PLACEHOLDER: add role ('Convenor', ...) per member; shows under the name when set
-  members: [
-    { name: 'Anand Desai', role: '' },
-    { name: 'Sreedhar Kulkarni', role: '' },
-    { name: 'Praveen Dyta', role: '' },
-    { name: 'Shreenivas Badada', role: '' },
-    { name: 'Sameer Kulkarni', role: '' },
-    { name: 'Mythili Balaji', role: '' },
-    { name: 'Dr. V N Murthy', role: '' },
-    { name: 'Muralidhar Kulkarni', role: '' },
-    { name: 'Mahesh Balasubramanian', role: '' },
-    { name: 'V G Prasad', role: '' },
-    { name: 'Tarak Rajesh', role: '' },
-    { name: 'Abhijeet Ballurkar', role: '' },
-  ] as { name: string; role: string }[],
+  // role shows under the name when set
+  groups: [
+    {
+      title: 'Bidyuth Leadership',
+      members: [
+        { name: 'Sri. Ambarish Prasanna', role: 'Bidyuth Chairman' },
+        { name: 'Sri. Shreenivas Badada', role: 'Bidyuth Secretary' },
+        { name: 'Sri. Krishnan', role: 'Bidyuth Treasurer' },
+      ],
+    },
+    {
+      title: 'BBB Trustees',
+      members: [
+        { name: 'Sri. Ananth Nagaraj', role: 'Founder & Managing Trustee' },
+        { name: 'Dr. Subraya B M', role: 'Trustee' },
+        { name: 'Sri. Shyam Sundar S', role: 'Trustee' },
+      ],
+    },
+    {
+      title: 'BBB Governing Council',
+      members: [
+        { name: 'Sri. A R N Murthy', role: 'Governing Council Chairman' },
+        { name: 'Dr. Subraya B M', role: 'Trustee' },
+        { name: 'Sri. Shyam Sundar S', role: 'Trustee' },
+        { name: 'Sri. Vinay Prashant', role: 'Governing Council Member' },
+      ],
+    },
+    {
+      title: 'BBB Central Executive Committee',
+      members: [
+        { name: 'Sri. Vinay Prashant', role: 'CEC Chairman' },
+        { name: 'Sri. Ambarish Prasanna', role: 'CEC Secretary & Director - Ops' },
+        { name: 'Sri. Krishnan V', role: 'Director, Finance' },
+        { name: 'Sri. Devaprakash', role: 'Director, Learning & Development' },
+        { name: 'Sri. Ravi Chandra', role: 'Director, Chapter Health, Grievance & POSH' },
+        { name: 'Sri. Shreenivas Badada', role: 'Director, Events' },
+        { name: 'Smt. Priya Raju', role: 'Director, Marketing and Communications' },
+        { name: 'Sri. Bhargav Sundaram', role: 'Director, Strategic Partnerships and Business Growth' },
+        { name: 'Sri. B N Narahari', role: 'Director, Information Technology' },
+      ],
+    },
+    {
+      title: 'Bruhath Bidyuth: Build-up Team',
+      members: [
+        { name: 'Kiran Narayanaa', role: 'Food (then support in Promotion)' },
+        { name: 'Bhaskar', role: 'Travel Desk & Accommodation (then support in Promotion)' },
+        { name: 'Balaji', role: 'Finance (then support in Promotion)' },
+        { name: 'Murali Sridhar', role: 'Photography' },
+        { name: 'Nagendra Prasad', role: 'Promotions' },
+        { name: 'Pavana Kumar', role: 'Sponsors' },
+        { name: 'Madhukar', role: 'Guest' },
+        { name: 'Ravi Chandra', role: 'Venue & Logistics' },
+      ],
+    },
+    {
+      title: 'Bruhath Bidyuth: On the Day',
+      members: [
+        { name: 'Raghavendra', role: 'Registration (support in Promotion)' },
+        { name: 'Vinay Prashant', role: 'Stalls' },
+        { name: 'Priya Raju', role: 'Cultural (support in Food)' },
+        { name: 'A R N Murthy', role: 'Awards' },
+        { name: 'Ambarish Prasanna', role: 'Program' },
+        { name: 'Murali Sridhar', role: 'Stage (support in Promotion)' },
+      ],
+    },
+    {
+      title: 'SPOCs: Digital & Creativity',
+      members: [
+        { name: 'Raksha Karpoor', role: '' },
+        { name: 'Anjali Deshmukh', role: '' },
+        { name: 'Madhavi Koushik', role: '' },
+        { name: 'Shalini Mukund', role: '' },
+        { name: 'Anusha', role: '' },
+        { name: 'Srivatsa', role: '' },
+        { name: 'Udupi Web Solutions', role: '' },
+        { name: 'Shreenivas Badada', role: '' },
+        { name: 'Priya Raju Iyengar', role: '' },
+        { name: 'Nagendra Rao', role: 'Kaizen' },
+      ],
+    },
+  ] as { title: string; members: { name: string; role: string }[] }[],
 };
 
 export const CONTACT = {

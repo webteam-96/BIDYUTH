@@ -45,7 +45,7 @@ export function MagneticButton({ href, children, className = '', cursor = 'REGIS
       onMouseLeave={leave}
       style={{ x: sx, y: sy }}
       whileTap={{ scale: 0.96 }}
-      className={`group relative inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 font-medium transition-shadow ${variant === 'ink' ? 'bg-ink text-bg shadow-[4px_4px_0_var(--bg)]' : 'bg-secondary text-ink shadow-[4px_4px_0_var(--ink)] hover:shadow-[2px_2px_0_var(--ink)]'} ${className}`}
+      className={`group relative inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 font-medium transition-shadow ${variant === 'ink' ? 'bg-ink text-bg shadow-[4px_4px_0_var(--bg)]' : 'bg-secondary text-bg shadow-[4px_4px_0_var(--ink)] hover:shadow-[2px_2px_0_var(--ink)]'} ${className}`}
     >
       <motion.span style={{ x: ix, y: iy }} className="relative inline-flex items-center gap-3">
         {children}

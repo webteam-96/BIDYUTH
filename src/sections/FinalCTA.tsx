@@ -77,7 +77,7 @@ export function FinalCTA() {
       </svg>
       <div data-flash aria-hidden="true" className="pointer-events-none absolute inset-0 bg-white opacity-0" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] text-center">
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] text-center text-bg">
         <h2 data-big-cta className="display text-display-lg">
           {FINAL.big}
         </h2>

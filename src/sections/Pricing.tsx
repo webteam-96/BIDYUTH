@@ -15,12 +15,12 @@ function Card({ p, isNext }: { p: PhaseView; isNext: boolean }) {
       data-price-card
       aria-current={active ? 'true' : undefined}
       className={`relative flex min-h-[21rem] w-[76vw] max-w-[22rem] shrink-0 snap-center flex-col rounded-[28px] border-2 border-ink p-5 shadow-[6px_6px_0_var(--ink)] md:w-[44vw] md:p-6 lg:w-auto lg:max-w-none ${
-        active ? 'pulse-glow bg-secondary' : 'bg-bg'
+        active ? 'pulse-glow bg-secondary text-bg' : 'bg-bg'
       } ${closed ? 'opacity-70' : ''}`}
     >
       <div className="mb-auto flex min-h-8 items-center justify-between gap-2">
         <h3 className="mono text-label font-bold">{p.label}</h3>
-        {active && <span className="sticker rotate-3 bg-bg">{PRICING.activeLabel}</span>}
+        {active && <span className="sticker rotate-3 bg-bg text-ink">{PRICING.activeLabel}</span>}
         {isNext && <span className="sticker -rotate-2 bg-bg !shadow-none">{PRICING.upcoming}</span>}
       </div>
       <p className={`display my-6 tabular-nums ${p.price == null ? 'text-display-sm' : 'text-price'} ${closed ? 'line-through decoration-[3px]' : ''}`}>{priceLabel(p)}</p>

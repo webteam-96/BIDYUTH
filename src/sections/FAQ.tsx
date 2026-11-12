@@ -30,7 +30,7 @@ export function FAQ() {
                     <motion.span
                       animate={{ rotate: on ? 45 : 0 }}
                       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-ink text-2xl leading-none ${on ? 'bg-secondary' : ''}`}
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-ink text-2xl leading-none ${on ? 'bg-secondary text-bg' : ''}`}
                       aria-hidden="true"
                     >
                       +

@@ -6,9 +6,9 @@ import { SectionLabel } from '../components/SplitText';
 import { Bolt, MagneticButton } from '../components/MagneticButton';
 
 const PLACEHOLDER_BG = [
-  'linear-gradient(135deg,#cfe8e6 0%,#1a9a94 60%,#0f5f63 100%)',
-  'linear-gradient(160deg,#f6eedd 0%,#e8a317 100%)',
-  'linear-gradient(120deg,#f6eedd 0%,#cfe8e6 100%)',
+  'linear-gradient(135deg,#cfe8e6 0%,#099c98 60%,#0f5f63 100%)',
+  'linear-gradient(160deg,#f7e4df 0%,#b43011 100%)',
+  'linear-gradient(120deg,#f7e4df 0%,#cfe8e6 100%)',
 ];
 
 export function Venue() {

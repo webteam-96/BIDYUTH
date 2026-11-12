@@ -5,10 +5,10 @@
   --bg: #f4f8f9;
   --bg-alt: #e3efee;
   --ink: #1f2a2e;
-  --primary: #1a9a94;
+  --primary: #099c98;
   --primary-2: #cfe8e6;
-  --secondary: #e8a317;
-  --secondary-2: #f6eedd;
+  --secondary: #b43011;
+  --secondary-2: #f7e4df;
   --line: rgba(31, 42, 46, 0.12);
   --gutter: 1rem;
   --deep: #0f5f63;
@@ -19,17 +19,17 @@
   --color-bg: #f4f8f9;
   --color-bg-alt: #e3efee;
   --color-ink: #1f2a2e;
-  --color-primary: #1a9a94;
+  --color-primary: #099c98;
   --color-primary-2: #cfe8e6;
-  --color-secondary: #e8a317;
-  --color-secondary-2: #f6eedd;
+  --color-secondary: #b43011;
+  --color-secondary-2: #f7e4df;
   --color-line: rgba(31, 42, 46, 0.12);
   --color-deep: #0f5f63;
   --color-bbb-red: #c1272d;
-  --font-display: 'Marcellus', Georgia, serif;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Nunito Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Nunito Sans', system-ui, sans-serif;
+  --font-display: 'Cinzel', Georgia, serif;
+  --font-serif: 'Poppins', system-ui, sans-serif;
+  --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Poppins', system-ui, sans-serif;
 
   /* Type scale — floors: label/meta/small 13px mobile → 14px desktop, body 16 → 18px */
   --text-label: clamp(0.8125rem, 0.7675rem + 0.17vw, 0.875rem);
@@ -55,7 +55,7 @@
   --text-manifesto: clamp(1.625rem, 1.1rem + 2.4vw, 3.75rem);
   --text-manifesto--line-height: 1.04;
   /* hero wordmark spans the content width on phones */
-  --text-hero: calc((100vw - 2rem) / 4.25);
+  --text-hero: calc((100vw - 2rem) / 4.65);
   --text-hero--line-height: 0.8;
   --text-hero-lg: clamp(4.5rem, 19vw, 22rem);
   --text-hero-lg--line-height: 0.8;
@@ -79,7 +79,7 @@ body {
   body { overflow-x: clip; }
 }
 
-::selection { background: var(--secondary); color: var(--ink); }
+::selection { background: var(--secondary); color: var(--bg); }
 
 :focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; border-radius: 6px; }
 
@@ -127,7 +127,7 @@ body {
 .pulse-glow { position: relative; }
 .pulse-glow::after {
   content: ''; position: absolute; inset: -6px; border-radius: 34px; pointer-events: none; z-index: -1;
-  box-shadow: 0 0 0 6px rgba(232, 163, 23, 0.35), 0 0 60px rgba(232, 163, 23, 0.7);
+  box-shadow: 0 0 0 6px rgba(180, 48, 17, 0.35), 0 0 60px rgba(180, 48, 17, 0.7);
   animation: glow 2.4s ease-in-out infinite alternate;
 }
 @keyframes glow { from { opacity: 0.45; } to { opacity: 1; } }

@@ -28,7 +28,7 @@ export function TechPartner() {
         <div className="mt-16 lg:mt-20">
           <h2 className="mono mb-6 text-label font-bold">{COMMITTEE.label}</h2>
           <ul className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-            {COMMITTEE.members.map((m, i) => (
+            {COMMITTEE.groups.flatMap((g) => g.members).map((m, i) => (
               <li key={i} className="rounded-[24px] border border-line p-3 md:p-4">
                 <div className="mb-4 aspect-square rounded-2xl bg-bg-alt" aria-hidden="true" />
                 <p className="text-body font-medium">{m.name}</p>

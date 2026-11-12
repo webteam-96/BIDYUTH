@@ -39,7 +39,7 @@ export function Partners() {
                 <a
                   href={URLS.PARTNER_ENQUIRY_URL}
                   data-cursor="VIEW"
-                  className="mono inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-ink bg-ink px-5 text-label font-bold text-bg transition-colors hover:bg-secondary hover:text-ink"
+                  className="mono inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-ink bg-ink px-5 text-label font-bold text-bg transition-colors hover:bg-secondary hover:text-bg"
                   aria-label={`${PARTNERS.cta}: ${p.title}`}
                 >
                   {PARTNERS.cta} →

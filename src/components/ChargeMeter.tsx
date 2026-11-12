@@ -17,7 +17,7 @@ export function ChargeMeter() {
     <div ref={ref} aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-[80] h-[3px]" style={{ ['--p' as string]: 0 }}>
       <div className="h-full origin-left bg-secondary" style={{ transform: 'scaleX(var(--p))' }} />
       <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ left: 'calc(var(--p) * 100%)' }}>
-        <Bolt className="h-4 w-4 text-secondary drop-shadow-[0_0_6px_rgba(232,163,23,0.8)]" />
+        <Bolt className="h-4 w-4 text-secondary drop-shadow-[0_0_6px_rgba(180,48,17,0.8)]" />
       </div>
     </div>
   );

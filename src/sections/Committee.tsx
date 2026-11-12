@@ -9,17 +9,24 @@ export function Committee() {
       <div className="mx-auto max-w-[1400px]">
         <SectionLabel label={COMMITTEE.label} className="mb-6 lg:mb-8" />
         {COMMITTEE.ready ? (
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {COMMITTEE.members.map((m) => (
-              <li key={m.name} className="flex min-h-[9rem] flex-col justify-between gap-6 rounded-[28px] border-2 border-ink bg-bg p-5 shadow-[5px_5px_0_var(--ink)] md:p-6">
-                <Bolt className="h-5 w-5 text-secondary" />
-                <div>
-                  <p className="display text-display-xs leading-tight">{m.name}</p>
-                  {m.role && <p className="mono mt-2 text-label opacity-70">{m.role}</p>}
-                </div>
-              </li>
+          <div className="flex flex-col gap-14 lg:gap-16">
+            {COMMITTEE.groups.map((g) => (
+              <div key={g.title}>
+                <h3 className="display mb-6 text-display-sm">{g.title}</h3>
+                <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {g.members.map((m) => (
+                    <li key={m.name + m.role} className="flex min-h-[9rem] flex-col justify-between gap-6 rounded-[28px] border-2 border-ink bg-bg p-5 shadow-[5px_5px_0_var(--ink)] md:p-6">
+                      <Bolt className="h-5 w-5 text-secondary" />
+                      <div>
+                        <p className="display text-display-xs leading-tight">{m.name}</p>
+                        {m.role && <p className="mono mt-2 text-label opacity-70">{m.role}</p>}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
           <ComingSoon text={COMMITTEE.comingSoon} />
         )}

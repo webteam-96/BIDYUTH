@@ -45,7 +45,7 @@ function MobileRegisterBar() {
       href={URLS.REGISTRATION_URL}
       target="_blank"
       rel="noopener"
-      className={`fixed inset-x-4 bottom-3 z-[75] flex min-h-14 items-center justify-between rounded-full border-2 border-ink bg-secondary px-6 shadow-[4px_4px_0_var(--ink)] transition-transform duration-500 lg:hidden ${show ? '' : 'translate-y-[160%]'}`}
+      className={`fixed inset-x-4 bottom-3 z-[75] flex min-h-14 items-center justify-between rounded-full border-2 border-ink bg-secondary px-6 text-bg shadow-[4px_4px_0_var(--ink)] transition-transform duration-500 lg:hidden ${show ? '' : 'translate-y-[160%]'}`}
       aria-hidden={!show}
       tabIndex={show ? 0 : -1}
     >
@@ -114,7 +114,7 @@ export default function App() {
 
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-secondary focus:px-4 focus:py-2">
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-secondary focus:text-bg focus:px-4 focus:py-2">
         {UI.skip}
       </a>
       <Preloader onDone={() => setReady(true)} />

@@ -78,7 +78,7 @@ export function Nav() {
               target="_blank"
               rel="noopener"
               data-cursor="REGISTER"
-              className="mono inline-flex min-h-11 items-center gap-1.5 rounded-full bg-secondary px-4 text-label font-bold text-ink"
+              className="mono inline-flex min-h-11 items-center gap-1.5 rounded-full bg-secondary px-4 text-label font-bold text-bg"
             >
               {NAV.cta} <Bolt className="h-3.5 w-3.5" />
             </a>
