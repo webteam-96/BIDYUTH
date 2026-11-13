@@ -148,7 +148,6 @@ export const PRICING = {
   closed: 'Closed',
   activeLabel: 'Live now',
   upcoming: 'Next',
-  dotsLabel: 'Show pricing phase',
   endsIn: 'Ends in',
   cta: 'Register Now',
   phases: [

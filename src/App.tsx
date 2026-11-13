@@ -28,7 +28,10 @@ import { Footer } from './sections/Footer';
 function MobileRegisterBar() {
   const { active } = useActivePhase();
   const [show, setShow] = useState(false);
+  const [inPricing, setInPricing] = useState(false);
   useEffect(() => {
+    // pricing has its own register button: don't stack the bar on top of it
+    const pr = ScrollTrigger.create({ trigger: '[data-pricing-cta]', start: 'top bottom', end: 'bottom top', onToggle: (s) => setInPricing(s.isActive) });
     // visible after the hero, hidden once the final CTA (and the footer below it) arrives
     const st = ScrollTrigger.create({
       trigger: '#top',
@@ -38,16 +41,17 @@ function MobileRegisterBar() {
       refreshPriority: -1,
       onToggle: (s) => setShow(s.isActive),
     });
-    return () => st.kill();
+    return () => (st.kill(), pr.kill());
   }, []);
+  const visible = show && !inPricing;
   return (
     <a
       href={URLS.REGISTRATION_URL}
       target="_blank"
       rel="noopener"
-      className={`fixed inset-x-4 bottom-3 z-[75] flex min-h-14 items-center justify-between rounded-full border-2 border-ink bg-secondary px-6 text-bg shadow-[4px_4px_0_var(--ink)] transition-transform duration-500 lg:hidden ${show ? '' : 'translate-y-[160%]'}`}
-      aria-hidden={!show}
-      tabIndex={show ? 0 : -1}
+      className={`fixed inset-x-4 bottom-3 z-[75] flex min-h-14 items-center justify-between rounded-full border-2 border-ink bg-secondary px-6 text-bg shadow-[4px_4px_0_var(--ink)] transition-transform duration-500 lg:hidden ${visible ? '' : 'translate-y-[160%]'}`}
+      aria-hidden={!visible}
+      tabIndex={visible ? 0 : -1}
     >
       <span className="mono text-meta font-bold">
         {UI.mobileBar} {priceLabel(active)} →

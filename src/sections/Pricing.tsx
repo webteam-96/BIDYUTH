@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { PRICING, URLS } from '../data/event';
 import { gsap } from '../lib/gsap';
 import { useScrollTrigger } from '../hooks/useScrollTrigger';
@@ -14,7 +14,7 @@ function Card({ p, isNext }: { p: PhaseView; isNext: boolean }) {
     <article
       data-price-card
       aria-current={active ? 'true' : undefined}
-      className={`relative flex min-h-[21rem] w-[76vw] max-w-[22rem] shrink-0 snap-center flex-col rounded-[28px] border-2 border-ink p-5 shadow-[6px_6px_0_var(--ink)] md:w-[44vw] md:p-6 lg:w-auto lg:max-w-none ${
+      className={`relative flex flex-col rounded-[28px] border-2 border-ink p-5 shadow-[6px_6px_0_var(--ink)] md:p-6 lg:min-h-[21rem] ${
         active ? 'pulse-glow bg-secondary text-bg' : 'bg-bg'
       } ${closed ? 'opacity-70' : ''}`}
     >
@@ -50,36 +50,6 @@ export function Pricing() {
   const { list: phases, active } = useActivePhase();
   // phases without a price yet (Regular = TBA) stay hidden until a price is set
   const list = phases.filter((p) => p.price != null);
-  const activeIdx = list.findIndex((p) => p.status === 'active');
-  const [slide, setSlide] = useState(activeIdx);
-
-  const cardAt = (i: number) => track.current?.querySelectorAll<HTMLElement>('[data-price-card]')[i];
-  const centerOn = (i: number, smooth: boolean) => {
-    const t = track.current;
-    const c = cardAt(i);
-    if (!t || !c || t.scrollWidth <= t.clientWidth) return;
-    t.scrollTo({ left: c.offsetLeft - (t.clientWidth - c.offsetWidth) / 2, behavior: smooth ? 'smooth' : 'auto' });
-  };
-
-  // carousel: start centred on the active phase, keep dots in sync with swipe
-  useEffect(() => {
-    centerOn(activeIdx, false);
-    const t = track.current!;
-    const onScroll = () => {
-      const mid = t.scrollLeft + t.clientWidth / 2;
-      let best = 0;
-      t.querySelectorAll<HTMLElement>('[data-price-card]').forEach((c, i) => {
-        const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
-        const bd = Math.abs((cardAt(best)?.offsetLeft ?? 0) + (cardAt(best)?.offsetWidth ?? 0) / 2 - mid);
-        if (d < bd) best = i;
-      });
-      setSlide(best);
-    };
-    t.addEventListener('scroll', onScroll, { passive: true });
-    return () => t.removeEventListener('scroll', onScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIdx]);
-
   useScrollTrigger(root, ({ reduce, desktop }) => {
     if (reduce) return;
     const cards = gsap.utils.toArray<HTMLElement>('[data-price-card]');
@@ -110,27 +80,13 @@ export function Pricing() {
         </div>
         <div
           ref={track}
-          className="no-scrollbar isolate -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[12vw] pb-6 pt-2 md:px-8 lg:mx-0 lg:grid lg:grid-cols-3 lg:overflow-visible lg:px-0"
+          className="grid grid-cols-1 gap-5 pb-2 lg:grid-cols-3"
         >
           {list.map((p, i) => (
             <Card key={p.id} p={p} isNext={i === firstUpcoming} />
           ))}
         </div>
-        <div className="flex justify-center lg:hidden">
-          {list.map((p, i) => (
-            <button
-              key={p.id}
-              type="button"
-              onClick={() => centerOn(i, true)}
-              aria-label={`${PRICING.dotsLabel}: ${p.label}`}
-              aria-current={slide === i ? 'true' : undefined}
-              className="flex h-11 w-11 items-center justify-center"
-            >
-              <span className={`block h-2.5 rounded-full border border-ink transition-all duration-300 ${slide === i ? 'w-7 bg-ink' : 'w-2.5 bg-transparent'}`} />
-            </button>
-          ))}
-        </div>
-        <div className="mt-6 flex flex-col items-stretch gap-6 border-t border-ink/30 pt-6 md:mt-8 md:flex-row md:justify-end">
+        <div data-pricing-cta className="mt-6 flex flex-col items-stretch gap-6 border-t border-ink/30 pt-6 md:mt-8 md:flex-row md:justify-end">
           <MagneticButton href={URLS.REGISTRATION_URL} className="shrink-0 text-lead">
             {PRICING.cta} · {priceLabel(active)}
           </MagneticButton>
