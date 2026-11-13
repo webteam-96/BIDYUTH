@@ -26,7 +26,7 @@ export function FAQ() {
                     onClick={() => setOpen(on ? null : i)}
                     className="flex min-h-11 w-full items-center justify-between gap-4 py-5 text-left md:gap-6 md:py-6"
                   >
-                    <span className="display text-display-xs">{f.q}</span>
+                    <span className="display text-display-xs leading-[1.1]">{f.q}</span>
                     <motion.span
                       animate={{ rotate: on ? 45 : 0 }}
                       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
