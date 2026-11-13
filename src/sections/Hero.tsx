@@ -61,10 +61,10 @@ export function Hero({ ready }: { ready: boolean }) {
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col">
         <div className="relative flex flex-1 flex-col items-center justify-center py-8 lg:py-10">
-          {/* w-fit: the date row spans exactly the wordmark */}
+          {/* w-fit: the date row spans exactly the wordmark, date centred above it */}
           <div data-title className="relative mx-auto w-fit">
-            <div className="mb-3 flex items-end justify-end gap-4 lg:mb-5">
-              <time data-tag dateTime={HERO.date.iso} className="text-right">
+            <div className="mb-3 flex items-end justify-center gap-4 lg:mb-5">
+              <time data-tag dateTime={HERO.date.iso} className="text-center">
                 <span className="display block text-display-sm">{HERO.date.range}</span>
                 <span className="mono mt-1 block text-meta">{HERO.date.monthYear}</span>
               </time>
