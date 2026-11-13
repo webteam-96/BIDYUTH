@@ -4,7 +4,7 @@ import { EVENT, HERO, MARQUEE, PRELOADER } from '../data/event';
 
 const NS = 'http://www.w3.org/2000/svg';
 // Only two panel tones, ~0.05 apart in relative luminance, so rapid cuts never read as flashes.
-const TONES = ['#F7E4DF', '#CFE8E6'];
+const TONES = ['#F6EEDD', '#D2EEEC'];
 
 function el<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number>, text?: string) {
   const n = document.createElementNS(NS, tag);

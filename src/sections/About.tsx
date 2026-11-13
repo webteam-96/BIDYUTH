@@ -50,6 +50,9 @@ export function About() {
             </span>
           ))}
         </p>
+        <a href={ABOUT.readMore.href} className="mono mt-10 inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-ink px-5 text-label font-bold hover:bg-ink hover:text-bg">
+          {ABOUT.readMore.label} <Bolt className="h-3.5 w-3.5" />
+        </a>
       </div>
     </section>
   );

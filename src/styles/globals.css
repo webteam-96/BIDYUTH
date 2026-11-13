@@ -2,34 +2,32 @@
 @import './fonts.css';
 
 :root {
-  --bg: #f4f8f9;
-  --bg-alt: #e3efee;
+  --bg: #f6fafa;
+  --bg-alt: #ffffff;
   --ink: #1f2a2e;
-  --primary: #099c98;
-  --primary-2: #cfe8e6;
-  --secondary: #b43011;
-  --secondary-2: #f7e4df;
+  --primary: #009c98;
+  --primary-2: #d2eeec;
+  --secondary: #b83930;
+  --secondary-2: #f6eedd;
   --line: rgba(31, 42, 46, 0.12);
   --gutter: 1rem;
-  --deep: #0f5f63;
-  --bbb-red: #c1272d;
+  --deep: #00615e;
 }
 
 @theme {
-  --color-bg: #f4f8f9;
-  --color-bg-alt: #e3efee;
+  --color-bg: #f6fafa;
+  --color-bg-alt: #ffffff;
   --color-ink: #1f2a2e;
-  --color-primary: #099c98;
-  --color-primary-2: #cfe8e6;
-  --color-secondary: #b43011;
-  --color-secondary-2: #f7e4df;
+  --color-primary: #009c98;
+  --color-primary-2: #d2eeec;
+  --color-secondary: #b83930;
+  --color-secondary-2: #f6eedd;
   --color-line: rgba(31, 42, 46, 0.12);
-  --color-deep: #0f5f63;
-  --color-bbb-red: #c1272d;
-  --font-display: 'Cinzel', Georgia, serif;
-  --font-serif: 'Poppins', system-ui, sans-serif;
-  --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Poppins', system-ui, sans-serif;
+  --color-deep: #00615e;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-body: 'Nunito Sans', Calibri, Arial, sans-serif;
+  --font-mono: 'Rajdhani', 'Arial Narrow', sans-serif;
 
   /* Type scale — floors: label/meta/small 13px mobile → 14px desktop, body 16 → 18px */
   --text-label: clamp(0.8125rem, 0.7675rem + 0.17vw, 0.875rem);
@@ -55,7 +53,7 @@
   --text-manifesto: clamp(1.625rem, 1.1rem + 2.4vw, 3.75rem);
   --text-manifesto--line-height: 1.04;
   /* hero wordmark spans the content width on phones */
-  --text-hero: calc((100vw - 2rem) / 4.65);
+  --text-hero: calc((100vw - 2rem) / 4.7);
   --text-hero--line-height: 0.8;
   --text-hero-lg: clamp(4.5rem, 19vw, 22rem);
   --text-hero-lg--line-height: 0.8;
@@ -83,9 +81,9 @@ body {
 
 :focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; border-radius: 6px; }
 
-.display { font-family: var(--font-display); font-weight: 400; letter-spacing: 0; line-height: 0.9; }
-.serif { font-family: var(--font-serif); font-style: italic; font-weight: 500; letter-spacing: 0; }
-.mono { font-family: var(--font-mono); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; }
+.display { font-family: var(--font-display); font-weight: 800; letter-spacing: 0; line-height: 0.9; }
+.serif { font-family: var(--font-serif); font-style: italic; font-weight: 700; letter-spacing: 0; }
+.mono { font-family: var(--font-mono); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; }
 
 /* grain overlay */
 .grain {
@@ -93,12 +91,12 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.pl-word { font-family: var(--font-display); font-weight: 400; font-size: 236px; }
+.pl-word { font-family: var(--font-display); font-weight: 800; font-size: 236px; }
 
 .outline-text { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
 
 .sticker {
-  font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-label); font-weight: 700; line-height: 1.2;
+  font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-label); font-weight: 700; line-height: 1.2;
   display: inline-flex; align-items: center; gap: 0.4em; padding: 0.55em 1em; border-radius: 999px;
   border: 1.5px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); white-space: nowrap;
 }
@@ -127,7 +125,7 @@ body {
 .pulse-glow { position: relative; }
 .pulse-glow::after {
   content: ''; position: absolute; inset: -6px; border-radius: 34px; pointer-events: none; z-index: -1;
-  box-shadow: 0 0 0 6px rgba(180, 48, 17, 0.35), 0 0 60px rgba(180, 48, 17, 0.7);
+  box-shadow: 0 0 0 6px rgba(184, 57, 48, 0.35), 0 0 60px rgba(184, 57, 48, 0.7);
   animation: glow 2.4s ease-in-out infinite alternate;
 }
 @keyframes glow { from { opacity: 0.45; } to { opacity: 1; } }

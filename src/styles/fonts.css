@@ -1,7 +1,7 @@
 /* Font files load from Google Fonts (links in index.html, display=swap). */
 :root {
-  --font-display: 'Cinzel', Georgia, serif;
-  --font-serif: 'Poppins', system-ui, sans-serif;
-  --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Poppins', system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-body: 'Nunito Sans', Calibri, Arial, sans-serif;
+  --font-mono: 'Rajdhani', 'Arial Narrow', sans-serif;
 }

@@ -8,9 +8,9 @@ import { ComingSoon } from '../components/ComingSoon';
 function Silhouette() {
   return (
     <svg viewBox="0 0 200 260" className="absolute inset-0 h-full w-full" aria-hidden="true" preserveAspectRatio="xMidYMax slice">
-      <rect width="200" height="260" fill="#cfe8e6" />
-      <circle cx="100" cy="100" r="44" fill="#8fbfbb" />
-      <path d="M20 260c6-62 40-96 80-96s74 34 80 96z" fill="#8fbfbb" />
+      <rect width="200" height="260" fill="#d2eeec" />
+      <circle cx="100" cy="100" r="44" fill="#009c98" />
+      <path d="M20 260c6-62 40-96 80-96s74 34 80 96z" fill="#009c98" />
     </svg>
   );
 }

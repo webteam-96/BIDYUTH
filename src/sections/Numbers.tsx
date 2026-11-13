@@ -108,7 +108,7 @@ export function Numbers() {
             {STATS.items.map((s) => (
               <div key={s.label} className="@container border-t border-ink pt-4">
                 <dt className="mono mb-2 text-label md:mb-3">{s.label}</dt>
-                {/* 26cqw keeps the widest value ("3000+", 5 Cinzel glyphs) inside its cell */}
+                {/* 26cqw keeps the widest value ("3000+", 5 Playfair glyphs) inside its cell */}
                 <dd className="display text-[min(26cqw,8rem)]">
                   <span className="sr-only">
                     {s.value}

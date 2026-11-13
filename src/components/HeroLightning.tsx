@@ -80,9 +80,9 @@ export default function HeroLightning() {
         else {
           ctx.save();
           ctx.globalAlpha = 1 - age;
-          ctx.shadowColor = '#099C98';
+          ctx.shadowColor = '#009C98';
           ctx.shadowBlur = 18;
-          ctx.strokeStyle = '#CFE8E6';
+          ctx.strokeStyle = '#D2EEEC';
           ctx.lineWidth = 2.4;
           ctx.beginPath();
           strike.pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));

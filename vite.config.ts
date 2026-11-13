@@ -6,5 +6,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   base: './',
   plugins: [react(), tailwindcss()],
-  build: { target: 'es2019', cssCodeSplit: true },
+  build: {
+    target: 'es2019',
+    cssCodeSplit: true,
+    rollupOptions: { input: { main: 'index.html', about: 'about.html', privacy: 'privacy.html', terms: 'terms.html', refund: 'refund.html' } },
+  },
 });

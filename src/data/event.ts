@@ -78,14 +78,16 @@ export const ABOUT = {
   label: 'About',
   // words flagged `hl` get the tangerine spark underline
   manifesto: [
-    { t: 'Once a year, the Forum of Business By Brahmins plugs into one place.' },
+    // gist of the About page letter (src/data/legal.ts ABOUT_PAGE)
+    { t: 'Bidyuth 2027 is a two-day business conclave and a convergence of minds, ideas and opportunities.' },
     { t: '3000+', hl: true },
-    { t: 'business owners from 23 cities and 14 states meet at Palace Grounds for two days of pure' },
-    { t: 'business,', hl: true },
-    { t: 'real referrals and' },
-    { t: 'connections', hl: true },
-    { t: 'that keep paying long after the lights go down. This is Bidyuth. Get charged.' },
+    { t: 'business owners from 23 cities and 14 states meet at Palace Grounds to gain strategic' },
+    { t: 'insights,', hl: true },
+    { t: 'meet new partners and clients, and' },
+    { t: 'power', hl: true },
+    { t: 'their business for the future. Get charged.' },
   ],
+  readMore: { label: 'More about Bidyuth', href: 'about.html' },
 };
 
 export const STATS = {
@@ -272,12 +274,16 @@ export const FAQ = {
   title: 'Questions,',
   titleAccent: 'answered',
   items: [
-    { q: 'Does the fee include lodging?', a: 'No, lodging support is extended separately after registration.' },
-    { q: 'How will I get confirmation?', a: 'Instant Email + WhatsApp confirmation with QR badge after payment.' },
-    { q: 'Can I get a GST invoice?', a: 'Yes, enter GSTIN and billing details during registration.' },
-    { q: 'What payment methods are accepted?', a: 'Credit/debit cards (incl. corporate, AMEX, international), net banking, UPI, wallets.' },
-    { q: 'Who can use the event app?', a: 'Only registered delegates.' },
-    { q: 'How do meals and entry work?', a: 'Your QR badge is scanned at entry, kit counter and meal counters.' },
+    // Source: committee FAQ list (owner: Shreenivas Badada). Unanswered/TBD items omitted until finalised.
+    { q: 'Can I get a refund if I cancel due to unforeseen or emergency circumstances?', a: 'No. Registrations are non-refundable.' },
+    { q: 'Is there a dress code for the conclave?', a: 'Business formals.' },
+    { q: 'Can I bring a family member or business team member to help with my stall?', a: 'Stay and logistics are not arranged; the member has to plan for them. Food charges apply as per visitor norms.' },
+    { q: 'What safety measures are in place at the venue?', a: 'The venue is in the heart of the city. A Health Corner will support basic medical needs.' },
+    { q: 'What is the check-in and check-out time?', a: 'Please check with the logistics team.' },
+    { q: 'Is transport arranged from the railway station or airport, including early arrivals?', a: 'No.' },
+    { q: "If I don't stay at the venue, is transport support (cab service etc.) available?", a: 'No.' },
+    { q: 'What does the registration fee include?', a: 'Day 1: two coffee/tea breaks with biscuits and cookies (AM & PM), buffet breakfast, lunch and dinner. Day 2: two coffee/tea breaks with biscuits and cookies (AM & PM), buffet breakfast and lunch.' },
+    { q: 'Does the registration fee include lodging?', a: 'No.' },
   ],
 };
 
@@ -404,3 +410,10 @@ export const UI = {
   countdownUnits: ['days', 'hrs', 'min', 'sec'],
   countdownAria: (d: number, h: number, m: number) => `${d} days ${h} hours ${m} minutes remaining`,
 };
+
+/** Footer links to the policy pages (file names match POLICIES ids in data/legal.ts). */
+export const POLICY_LINKS = [
+  { label: 'Privacy Policy', href: 'privacy.html' },
+  { label: 'Terms & Conditions', href: 'terms.html' },
+  { label: 'Refund Policy', href: 'refund.html' },
+];

@@ -27,7 +27,8 @@ function Scramble({ text }: { text: string }) {
   );
 }
 
-export function Nav() {
+/** onHome=false (about page): links load the home page section instead of scrolling in place. */
+export function Nav({ onHome = true }: { onHome?: boolean }) {
   const [open, setOpen] = useState(false);
   const menuBtn = useRef<HTMLButtonElement>(null);
 
@@ -47,7 +48,9 @@ export function Nav() {
     };
   }, [open]);
 
+  const link = (href: string) => (onHome ? href : href === '#top' ? './' : `./${href}`);
   const go = (e: React.MouseEvent, href: string) => {
+    if (!onHome) return;
     e.preventDefault();
     setOpen(false);
     // wait one frame so the scroll lock is released first
@@ -60,13 +63,13 @@ export function Nav() {
         className={`fixed inset-x-0 top-3 z-[72] px-4 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)] md:px-8`}
       >
         <nav aria-label={UI.navLabel} className="mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-line bg-bg/85 py-1.5 pl-3 pr-1.5 backdrop-blur-md">
-          <a href="#top" onClick={(e) => go(e, '#top')} className="flex min-h-11 items-center gap-2" aria-label={UI.home}>
+          <a href={link('#top')} onClick={(e) => go(e, '#top')} className="flex min-h-11 items-center gap-2" aria-label={UI.home}>
             <img src={EVENT.logos.bidyuth} alt="" className="h-8 w-auto md:h-9" width={2036} height={490} />
           </a>
           <ul className="hidden items-center gap-5 xl:flex 2xl:gap-7">
             {NAV.links.map((l) => (
               <li key={l.href}>
-                <a href={l.href} onClick={(e) => go(e, l.href)} aria-label={l.label} className="mono flex min-h-11 min-w-11 items-center justify-center text-label hover:text-secondary">
+                <a href={link(l.href)} onClick={(e) => go(e, l.href)} aria-label={l.label} className="mono flex min-h-11 min-w-11 items-center justify-center text-label hover:text-secondary">
                   <Scramble text={l.label.toUpperCase()} />
                 </a>
               </li>
@@ -117,7 +120,7 @@ export function Nav() {
             >
               {NAV.links.map((l) => (
                 <motion.li key={l.href} variants={{ hidden: { y: 40, opacity: 0 }, show: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.2, 0.8, 0.2, 1] } } }}>
-                  <a href={l.href} onClick={(e) => go(e, l.href)} className="display block border-b border-line py-3 text-display-md">
+                  <a href={link(l.href)} onClick={(e) => go(e, l.href)} className="display block border-b border-line py-3 text-display-md">
                     {l.label}
                   </a>
                 </motion.li>

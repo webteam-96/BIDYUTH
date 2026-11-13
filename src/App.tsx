@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MARQUEE, UI, URLS } from './data/event';
-import { gsap, ScrollTrigger, getLenis } from './lib/gsap';
+import { gsap, ScrollTrigger, getLenis, scrollToHash } from './lib/gsap';
 import { useLenis } from './hooks/useLenis';
 import { useReducedMotion } from './hooks/useReducedMotion';
 import { priceLabel, useActivePhase } from './hooks/useActivePhase';
@@ -72,6 +72,8 @@ export default function App() {
       l?.start();
       document.documentElement.style.overflow = '';
       ScrollTrigger.refresh();
+      // arriving from the about page with a section hash (e.g. ./#faq)
+      if (location.hash) requestAnimationFrame(() => scrollToHash(location.hash));
     }
   }, [ready, reduce]);
 
