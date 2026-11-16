@@ -3,6 +3,7 @@ import { STATS } from '../data/event';
 import { gsap } from '../lib/gsap';
 import { useScrollTrigger } from '../hooks/useScrollTrigger';
 import { SplitText } from '../components/SplitText';
+import { ChapterMap } from '../components/ChapterMap';
 
 function Odometer({ value, suffix }: { value: number; suffix: string }) {
   const digits = String(value).split('').map(Number);
@@ -50,24 +51,24 @@ export function Numbers() {
       <div className="mx-auto max-w-[1400px]">
         <SplitText title={STATS.title.split(' ').slice(0, 2).join(' ')} accent={STATS.title.split(' ').slice(2).join(' ')} className="mb-10 max-w-[14ch] lg:mb-16" />
 
-        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
-          <dl className="grid grid-cols-2 gap-x-4 gap-y-8 md:gap-x-6 md:gap-y-12">
-            {STATS.items.map((s) => (
-              <div key={s.label} className="@container border-t border-ink pt-4">
-                <dt className="mono mb-2 text-label md:mb-3">{s.label}</dt>
-                {/* 26cqw keeps the widest value ("3000+", 5 Playfair glyphs) inside its cell */}
-                <dd className="display text-[min(26cqw,8rem)]">
-                  <span className="sr-only">
-                    {s.value}
-                    {s.suffix}
-                  </span>
-                  <Odometer value={s.value} suffix={s.suffix} />
-                </dd>
-              </div>
-            ))}
-          </dl>
+        <dl className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 md:gap-x-6 md:gap-y-12">
+          {STATS.items.map((s) => (
+            <div key={s.label} className="@container border-t border-ink pt-4">
+              <dt className="mono mb-2 text-label md:mb-3">{s.label}</dt>
+              {/* 26cqw keeps the widest value ("3000+", 5 Playfair glyphs) inside its cell */}
+              <dd className="display text-[min(26cqw,8rem)]">
+                <span className="sr-only">
+                  {s.value}
+                  {s.suffix}
+                </span>
+                <Odometer value={s.value} suffix={s.suffix} />
+              </dd>
+            </div>
+          ))}
+        </dl>
 
-          <img src="./map/bbb-statewise-chapters.webp" alt="BBB statewise chapters map: 100 chapters and 4,304 members across India" width={1600} height={1448} loading="lazy" decoding="async" className="mx-auto w-full max-w-[40rem] rounded-[28px] border-2 border-ink" />
+        <div className="mt-14 lg:mt-20">
+          <ChapterMap />
         </div>
       </div>
     </section>

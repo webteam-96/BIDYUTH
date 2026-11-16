@@ -125,6 +125,23 @@ export const STATS = {
     { name: 'Chandigarh', at: [76.78, 30.73] },
     { name: 'Indore', at: [75.86, 22.72] },
   ] as { name: string; at: [number, number] }[],
+  // Source: BBB statewise chapters sheet. left/right = which column the card sits in on the map
+  chapters: [
+    { state: 'Rajasthan', chapters: 1, members: 41, side: 'left' },
+    { state: 'Gujarat', chapters: 2, members: 99, side: 'left' },
+    { state: 'Maharashtra', chapters: 7, members: 288, side: 'left' },
+    { state: 'Goa', chapters: 3, members: 117, side: 'left' },
+    { state: 'Karnataka', chapters: 35, members: 1694, side: 'left' },
+    { state: 'Tamil Nadu', chapters: 30, members: 1285, side: 'left' },
+    { state: 'Kerala', chapters: 4, members: 123, side: 'left' },
+    { state: 'Haryana', chapters: 1, members: 37, side: 'right' },
+    { state: 'Delhi', chapters: 2, members: 74, side: 'right' },
+    { state: 'Uttar Pradesh', chapters: 1, members: 52, side: 'right' },
+    { state: 'Chhattisgarh', chapters: 1, members: 51, side: 'right' },
+    { state: 'Odisha', chapters: 2, members: 83, side: 'right' },
+    { state: 'Telangana', chapters: 8, members: 231, side: 'right' },
+    { state: 'Andhra Pradesh', chapters: 3, members: 107, side: 'right' },
+  ] as { state: string; chapters: number; members: number; side: 'left' | 'right' }[],
 };
 
 export const FEATURES = {
