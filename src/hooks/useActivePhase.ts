@@ -22,9 +22,9 @@ export function resolvePhases(phases: Phase[], now: number): { list: PhaseView[]
 if (import.meta.env.DEV) {
   const at = (iso: string) => resolvePhases(PRICING.phases, t(iso)).active.id;
   console.assert(at('2026-11-09T10:00:00+05:30') === 'eb1', 'phase: eb1');
-  console.assert(at('2026-11-30T23:59:59+05:30') === 'eb1', 'phase: eb1 last second');
-  console.assert(at('2026-12-01T00:00:00+05:30') === 'eb2', 'phase: eb2');
-  console.assert(at('2026-12-31T12:00:00+05:30') === 'eb3', 'phase: eb3');
+  console.assert(at('2026-12-15T23:59:59+05:30') === 'eb1', 'phase: eb1 last second');
+  console.assert(at('2026-12-16T00:00:00+05:30') === 'eb2', 'phase: eb2');
+  console.assert(at('2026-12-31T23:59:59+05:30') === 'eb2', 'phase: eb2 last second');
   console.assert(at('2027-01-01T00:00:00+05:30') === 'regular', 'phase: regular');
 }
 

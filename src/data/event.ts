@@ -134,7 +134,7 @@ export const FEATURES = {
   // event highlights shown as cards
   items: [
     { title: 'Live KYT sessions', body: 'KYT sessions run live with members from 23 cities and 14 states.' },
-    { title: 'Quality speakers', body: 'Talks from business leaders and achievers from across the community.' },
+    { title: 'Quality speakers', body: 'Talks by business leaders and achievers from across the community.' },
     { title: 'Business transactions', body: 'Real referrals and deals passed between members over both days.' },
     { title: 'Networking', body: 'Two days with 3000+ business owners under one roof.' },
   ] as { title: string; body: string }[],
@@ -151,10 +151,9 @@ export const PRICING = {
   endsIn: 'Ends in',
   cta: 'Register Now',
   phases: [
-    { id: 'eb1', label: 'Early Bird 1', deadline: '2026-11-30T23:59:59+05:30', deadlineLabel: 'On or before 30 Nov 2026', price: 3555 },
-    { id: 'eb2', label: 'Early Bird 2', deadline: '2026-12-15T23:59:59+05:30', deadlineLabel: 'On or before 15 Dec 2026', price: 4555 },
-    { id: 'eb3', label: 'Early Bird 3', deadline: '2026-12-31T23:59:59+05:30', deadlineLabel: 'On or before 31 Dec 2026', price: 6999 },
-    { id: 'regular', label: 'Regular', deadline: null, startsAt: '2027-01-01T00:00:00+05:30', deadlineLabel: 'From 1 Jan 2027', price: null },
+    { id: 'eb1', label: 'Early Bird', deadline: '2026-12-15T23:59:59+05:30', deadlineLabel: 'On or before 15 Dec 2026', price: 3555 },
+    { id: 'eb2', label: 'Second Deadline', deadline: '2026-12-31T23:59:59+05:30', deadlineLabel: 'On or before 31 Dec 2026', price: 4555 },
+    { id: 'regular', label: 'Regular / Actual', deadline: null, startsAt: '2027-01-01T00:00:00+05:30', deadlineLabel: 'From 1 Jan 2027, incl. spot registration', price: 6999 },
   ] as Phase[],
   tba: 'To be announced',
 };
@@ -166,7 +165,7 @@ export const SPEAKERS = {
   comingSoon: 'The speaker line-up will be announced here soon.',
   mobileTitle: 'Speakers announcing soon',
   title: 'Voices with',
-  titleAccent: 'voltage',
+  titleAccent: 'Voltage',
   // PLACEHOLDER: 6 speaker cards
   items: Array.from({ length: 6 }, () => ({
     name: 'Announcing soon',
@@ -181,7 +180,7 @@ export const SCHEDULE = {
   titleAccent: 'Full charge.',
   // flip to true once the real agenda is in `days`
   ready: false,
-  comingSoon: 'The two-day agenda will be published here soon.',
+  comingSoon: "The two days' agenda will be published here soon.",
   placeholderNote: 'Tentative agenda — final timings to be announced.',
   tablistLabel: 'Event days',
   detailPlaceholder: 'Session details to be announced.', // PLACEHOLDER per-session details
@@ -276,9 +275,9 @@ export const FAQ = {
     // Source: committee FAQ list (owner: Shreenivas Badada). Unanswered/TBD items omitted until finalised.
     { q: 'Can I get a refund if I cancel due to unforeseen or emergency circumstances?', a: 'No. Registrations are non-refundable.' },
     { q: 'Is there a dress code for the conclave?', a: 'Business formals.' },
-    { q: 'Can I bring a family member or business team member to help with my stall?', a: 'Stay and logistics are not arranged; the member has to plan for them. Food charges apply as per visitor norms.' },
+    { q: 'Can I bring a family member or business team member to help with my stall?', a: 'Bidyuth is a members-only event. Anyone coming to support your stall must register separately as a visitor to use the venue facilities. Stay is not arranged for anyone; each person plans their own.' },
     { q: 'What safety measures are in place at the venue?', a: 'The venue is in the heart of the city. A Health Corner will support basic medical needs.' },
-    { q: 'What is the check-in and check-out time?', a: 'Please check with the logistics team.' },
+    { q: 'What is the check-in and check-out time?', a: 'Both days start with breakfast in the morning, followed by lunch and high tea. Day 1 ends with dinner; Day 2 closes with high tea.' },
     { q: 'Is transport arranged from the railway station or airport, including early arrivals?', a: 'No.' },
     { q: "If I don't stay at the venue, is transport support (cab service etc.) available?", a: 'No.' },
     { q: 'What does the registration fee include?', a: 'Day 1: two coffee/tea breaks with biscuits and cookies (AM & PM), buffet breakfast, lunch and dinner. Day 2: two coffee/tea breaks with biscuits and cookies (AM & PM), buffet breakfast and lunch.' },
@@ -303,7 +302,7 @@ export const COMMITTEE = {
       members: [
         { name: 'Sri. Ambarish Prasanna', role: 'Bidyuth Chairman' },
         { name: 'Sri. Shreenivas Badada', role: 'Bidyuth Secretary' },
-        { name: 'Sri. Krishnan', role: 'Bidyuth Treasurer' },
+        { name: 'Sri. Krishnan V', role: 'Bidyuth Treasurer' },
       ],
     },
     {
@@ -338,24 +337,24 @@ export const COMMITTEE = {
       ],
     },
     {
-      title: 'Bruhath Bidyuth: Build-up Team',
+      title: 'Bidyuth 2027: Build-up Team',
       members: [
-        { name: 'Kiran Narayanaa', role: 'Food (then support in Promotion)' },
-        { name: 'Bhaskar', role: 'Travel Desk & Accommodation (then support in Promotion)' },
+        { name: 'Kiran Narayanaa', role: 'Hospitality (then support in Promotion)' },
+        { name: 'Bhaskaran Santanam', role: 'Travel Desk & Accommodation (then support in Promotion)' },
         { name: 'Balaji', role: 'Finance (then support in Promotion)' },
         { name: 'Murali Sridhar', role: 'Photography' },
         { name: 'Nagendra Prasad', role: 'Promotions' },
         { name: 'Pavana Kumar', role: 'Sponsors' },
-        { name: 'Madhukar', role: 'Guest' },
+        { name: 'ARN Murthy', role: 'Guest' },
         { name: 'Ravi Chandra', role: 'Venue & Logistics' },
       ],
     },
     {
-      title: 'Bruhath Bidyuth: On the Day',
+      title: 'Bidyuth 2027: On the Day',
       members: [
         { name: 'Raghavendra', role: 'Registration (support in Promotion)' },
         { name: 'Vinay Prashant', role: 'Stalls' },
-        { name: 'Priya Raju', role: 'Cultural (support in Food)' },
+        { name: 'Priya Raju', role: 'Cultural (support in Hospitality)' },
         { name: 'A R N Murthy', role: 'Awards' },
         { name: 'Ambarish Prasanna', role: 'Program' },
         { name: 'Murali Sridhar', role: 'Stage (support in Promotion)' },
