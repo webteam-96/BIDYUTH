@@ -69,7 +69,6 @@ export function Venue() {
         <figcaption className="flex items-center gap-3 border-t-2 border-ink pt-3">
           <Bolt className="h-5 w-5 shrink-0 text-secondary" />
           <span className="display text-display-xs">{VENUE.city}</span>
-          <span className="mono ml-auto text-meta opacity-80">{VENUE.coords}</span>
         </figcaption>
         </figure>
 

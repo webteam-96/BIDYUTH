@@ -236,7 +236,6 @@ export const SCHEDULE = {
 export const VENUE = {
   label: 'Venue',
   region: 'Karnataka',
-  coords: '12.998° N · 77.592° E',
   big: 'PALACE GROUNDS',
   city: 'Bengaluru',
   body: 'One of Bengaluru’s grandest event grounds — open, central and built for crowds of thousands.',
