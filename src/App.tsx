@@ -137,7 +137,6 @@ export default function App() {
             ))}
           </p>
         </div>
-        <TechPartner />
         <About />
         <Numbers />
         <Features />
@@ -149,6 +148,7 @@ export default function App() {
         {/* hidden: delegate app teaser */}
         <Committee />
         <FAQ />
+        <TechPartner />
         <FinalCTA />
       </main>
       <Footer />
