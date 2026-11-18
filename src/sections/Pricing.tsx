@@ -15,10 +15,10 @@ function Card({ p, isNext }: { p: PhaseView; isNext: boolean }) {
       data-price-card
       aria-current={active ? 'true' : undefined}
       className={`relative flex flex-col rounded-[28px] border-2 border-ink p-5 shadow-[6px_6px_0_var(--ink)] md:p-6 lg:min-h-[21rem] ${
-        active ? 'pulse-glow bg-secondary text-bg' : 'bg-bg'
+        active ? 'bg-secondary text-bg' : 'bg-bg'
       } ${closed ? 'opacity-70' : ''}`}
     >
-      <div className="mb-auto flex min-h-8 items-center justify-between gap-2">
+      <div className="flex min-h-8 items-center justify-between gap-2">
         <h3 className="mono text-label font-bold">{p.label}</h3>
         {active && <span className="sticker rotate-3 bg-bg text-ink">{PRICING.activeLabel}</span>}
         {isNext && <span className="sticker -rotate-2 bg-bg !shadow-none">{PRICING.upcoming}</span>}
@@ -32,8 +32,10 @@ function Card({ p, isNext }: { p: PhaseView; isNext: boolean }) {
         </div>
       )}
       {/* charge bar */}
-      <div className="mt-5 h-2 overflow-hidden rounded-full border border-ink/40" aria-hidden="true">
-        <div data-charge className={`h-full origin-left ${active ? 'bg-ink' : closed ? 'bg-ink/40' : 'bg-primary'}`} />
+      <div className="mt-auto pt-5" aria-hidden="true">
+        <div className="h-2 overflow-hidden rounded-full border border-ink/40">
+          <div data-charge className={`h-full origin-left ${active ? 'bg-ink' : closed ? 'bg-ink/40' : 'bg-primary'}`} />
+        </div>
       </div>
       {closed && (
         <span className="display pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 rounded-xl border-4 border-ink px-4 py-1 text-display-sm text-ink/80 mix-blend-multiply">

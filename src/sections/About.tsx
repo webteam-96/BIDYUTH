@@ -20,7 +20,7 @@ export function About() {
           { trigger: '[data-manifesto]', start: 'top 80%', end: 'bottom 40%', scrub: 0.5 },
     });
     els.forEach((el, i) => {
-      tl.fromTo(el, { opacity: 0.15 }, { opacity: 1, duration: 0.1, ease: 'none' }, i * 0.1);
+      tl.fromTo(el, { opacity: 0.35 }, { opacity: 1, duration: 0.1, ease: 'none' }, i * 0.1);
       const ul = el.querySelector('[data-ul]');
       const sp = el.querySelector('[data-spark]');
       if (ul) tl.fromTo(ul, { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: 'power2.out' }, i * 0.1);

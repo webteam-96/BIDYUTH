@@ -1,8 +1,8 @@
 import { STATS } from '../data/event';
 import { INDIA_STATES } from '../data/indiaStates';
 
-// palette taken from the BBB statewise chapters sheet
-const C = { active: '#F27E19', idle: '#F8EDC5', border: '#8B6B3D', line: '#B9B6AE', card: '#FDFCF8', cardEdge: '#EDE6D8', title: '#C0412D', text: '#1B2033' };
+// site palette: teal = states with chapters, sand = no chapter yet
+const C = { active: 'var(--primary)', idle: 'var(--secondary-2)', border: 'var(--ink)', line: 'rgba(31, 42, 46, 0.35)', card: 'var(--bg)', cardEdge: 'var(--ink)', title: 'var(--secondary)', text: 'var(--ink)' };
 const ACTIVE = new Set(STATS.chapters.map((c) => c.state));
 // cream states labelled on the sheet; [x, y] in viewBox units
 const LABELS: [string, number, number][] = [
@@ -27,12 +27,12 @@ function Map({ cards }: { cards: boolean }) {
       aria-label={`Map of India: BBB chapters in ${STATS.chapters.length} states`}
       style={{ fontFamily: 'var(--font-body)' }}
     >
-      <g stroke={C.border} strokeWidth="1.2" strokeLinejoin="round">
+      <g stroke={C.border} strokeWidth="0.8" strokeLinejoin="round">
         {Object.entries(INDIA_STATES).map(([name, s]) => (
           <path key={name} d={s.d} fill={ACTIVE.has(name) ? C.active : C.idle} />
         ))}
       </g>
-      <g fontSize="15" fontWeight="700" fill="#2A2A2A" textAnchor="middle">
+      <g fontSize="15" fontWeight="700" fill={C.text} textAnchor="middle">
         {LABELS.map(([t, x, y]) => (
           <text key={t} x={x} y={y}>{t}</text>
         ))}
@@ -44,7 +44,7 @@ function Map({ cards }: { cards: boolean }) {
           ))}
         </g>
       )}
-      <g fill="none" stroke="#FCE3C8" strokeWidth="2">
+      <g fill="var(--bg)" stroke={C.border} strokeWidth="2">
         {placed.map((p) => (
           <circle key={p.state} cx={p.dot[0]} cy={p.dot[1]} r="5" />
         ))}
@@ -52,8 +52,7 @@ function Map({ cards }: { cards: boolean }) {
       {cards &&
         placed.map((p) => (
           <g key={p.state} transform={`translate(${p.x} ${p.y})`}>
-            <rect width={CARD.w} height={CARD.h} rx="6" fill={C.card} stroke={C.cardEdge} strokeWidth="2" />
-            <rect width="5" height={CARD.h} rx="2" fill={C.active} />
+            <rect width={CARD.w} height={CARD.h} rx="14" fill={C.card} stroke={C.cardEdge} strokeWidth="2" />
             <text x="16" y="30" fontSize="24" fontWeight="700" fill={C.title}>{p.state}</text>
             <text x="16" y="58" fontSize="17" fontWeight="700" fill={C.text}>Chapters: {p.chapters}</text>
             <text x="16" y="83" fontSize="17" fontWeight="700" fill={C.text}>Members: {fmt(p.members)}</text>
@@ -76,7 +75,7 @@ export function ChapterMap() {
         </div>
         <ul className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
           {STATS.chapters.map((c) => (
-            <li key={c.state} className="rounded-md border-2 border-l-[5px] p-3" style={{ background: C.card, borderColor: C.cardEdge, borderLeftColor: C.active }}>
+            <li key={c.state} className="rounded-2xl border-2 border-ink bg-bg p-3">
               <p className="font-bold" style={{ color: C.title }}>{c.state}</p>
               <p className="text-sm font-bold" style={{ color: C.text }}>Chapters: {c.chapters}</p>
               <p className="text-sm font-bold" style={{ color: C.text }}>Members: {fmt(c.members)}</p>

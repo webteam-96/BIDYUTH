@@ -52,7 +52,7 @@ export function Hero({ ready }: { ready: boolean }) {
 
   return (
     <section ref={root} id="top" data-bg="var(--bg)" className="relative flex min-h-[100svh] flex-col overflow-hidden px-4 pb-6 pt-24 md:px-8 md:pt-28">
-      <div data-tint aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-primary-2 via-primary/60 to-primary opacity-0" />
+      <div data-tint aria-hidden="true" className="absolute inset-0 bg-primary-2 opacity-0" />
       {!reduce && (
         <Suspense fallback={null}>
           <HeroLightning />
@@ -90,7 +90,7 @@ export function Hero({ ready }: { ready: boolean }) {
 
         <div className="flex flex-col items-stretch gap-3 md:items-center md:gap-4">
           {active.deadline && (
-            <div data-rise className="flex flex-col items-center gap-4 rounded-3xl border border-ink/20 bg-bg/75 px-8 py-5 backdrop-blur">
+            <div data-rise className="flex flex-col items-center gap-4 rounded-3xl border border-ink/20 bg-bg px-8 py-5">
               <span className="mono whitespace-nowrap text-lead">{HERO.countdownLabel}</span>
               <Countdown to={active.deadline} digitClass="text-display-sm" className="gap-6 md:gap-8" />
             </div>

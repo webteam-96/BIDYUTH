@@ -1,33 +1,8 @@
-import { useRef, type ReactNode } from 'react';
-import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
+import { useRef } from 'react';
 import { FEATURES } from '../data/event';
 import { gsap } from '../lib/gsap';
 import { useScrollTrigger } from '../hooks/useScrollTrigger';
 import { SectionLabel, SplitText } from '../components/SplitText';
-
-function Tilt({ children, className = '' }: { children: ReactNode; className?: string }) {
-  const reduce = useReducedMotion();
-  const rx = useSpring(useMotionValue(0), { stiffness: 180, damping: 16 });
-  const ry = useSpring(useMotionValue(0), { stiffness: 180, damping: 16 });
-  return (
-    <motion.div
-      className={className}
-      style={{ rotateX: rx, rotateY: ry, transformPerspective: 900 }}
-      onMouseMove={(e) => {
-        if (reduce) return;
-        const r = e.currentTarget.getBoundingClientRect();
-        ry.set(((e.clientX - r.left) / r.width - 0.5) * 14);
-        rx.set(-((e.clientY - r.top) / r.height - 0.5) * 14);
-      }}
-      onMouseLeave={() => {
-        rx.set(0);
-        ry.set(0);
-      }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 const TONES = ['bg-bg', 'bg-primary-2', 'bg-bg', 'bg-secondary-2', 'bg-bg', 'bg-primary-2'];
 
@@ -77,10 +52,10 @@ export function Features() {
           <div ref={grid} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURES.items.map((f, i) => (
               <div key={f.title} data-card style={{ zIndex: 10 - i }} className="relative">
-                <Tilt className={`h-full rounded-[28px] border-2 border-ink p-5 md:p-6 ${TONES[i]} shadow-[5px_5px_0_var(--ink)]`}>
+                <div className={`h-full rounded-[28px] border-2 border-ink p-5 md:p-6 ${TONES[i]}`}>
                   <h3 className="display mb-3 text-display-xs lg:mt-10">{f.title}</h3>
                   <p className="text-body opacity-80">{f.body}</p>
-                </Tilt>
+                </div>
               </div>
             ))}
           </div>

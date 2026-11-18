@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { FAQ as DATA } from '../data/event';
 import { SectionLabel, SplitText } from '../components/SplitText';
 
@@ -27,32 +26,26 @@ export function FAQ() {
                     className="flex min-h-11 w-full items-center justify-between gap-4 py-5 text-left md:gap-6 md:py-6"
                   >
                     <span className="display text-display-xs leading-[1.1]">{f.q}</span>
-                    <motion.span
-                      animate={{ rotate: on ? 45 : 0 }}
-                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-ink text-2xl leading-none ${on ? 'bg-secondary text-bg' : ''}`}
+                    <span
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-ink text-2xl leading-none transition-transform duration-200 ease-out ${on ? 'rotate-45 bg-secondary text-bg' : ''}`}
                       aria-hidden="true"
                     >
                       +
-                    </motion.span>
+                    </span>
                   </button>
                 </h3>
-                <AnimatePresence initial={false}>
-                  {on && (
-                    <motion.div
-                      id={`faq-${i}`}
-                      role="region"
-                      aria-labelledby={`faq-q-${i}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="max-w-[60ch] pb-6 text-lead opacity-80">{f.a}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* grid-rows 0fr -> 1fr animates to the answer's real height */}
+                <div
+                  id={`faq-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-q-${i}`}
+                  aria-hidden={!on}
+                  className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${on ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="max-w-[60ch] pb-6 text-lead opacity-80">{f.a}</p>
+                  </div>
+                </div>
               </li>
             );
           })}

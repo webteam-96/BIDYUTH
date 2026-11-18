@@ -46,10 +46,10 @@ export function Footer({ onHome = true }: { onHome?: boolean }) {
               </li>
             ))}
           </ul>
-          <span className="flex items-center gap-3">
-            <span className="opacity-70">{CONTACT.techLabel}</span>
-            <img src={EVENT.logos.kaizen} alt={TECH.name} className="h-9 w-auto rounded-md bg-bg p-0.5" width={602} height={376} loading="lazy" />
-          </span>
+          <a href={TECH.url} target="_blank" rel="noopener" className="inline-flex min-h-11 items-center hover:text-secondary">
+            <span className="opacity-70">{CONTACT.techLabel}&nbsp;</span>
+            {TECH.name}
+          </a>
         </div>
       </div>
     </footer>

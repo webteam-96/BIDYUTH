@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MARQUEE, UI, URLS } from './data/event';
+import { BAND, UI, URLS } from './data/event';
 import { gsap, ScrollTrigger, getLenis, scrollToHash } from './lib/gsap';
 import { useLenis } from './hooks/useLenis';
 import { useReducedMotion } from './hooks/useReducedMotion';
@@ -7,8 +7,6 @@ import { priceLabel, useActivePhase } from './hooks/useActivePhase';
 import { Preloader } from './components/Preloader';
 import { Nav } from './components/Nav';
 import { ChargeMeter } from './components/ChargeMeter';
-import { CurrentLines } from './components/CurrentLines';
-import { Marquee } from './components/Marquee';
 import { Bolt } from './components/MagneticButton';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
@@ -19,6 +17,7 @@ import { Speakers } from './sections/Speakers';
 import { Schedule } from './sections/Schedule';
 import { Venue } from './sections/Venue';
 import { Partners } from './sections/Partners';
+import { TechPartner } from './sections/TechPartner';
 // import { AppTeaser } from './sections/AppTeaser';
 import { Committee } from './sections/Committee';
 import { FAQ } from './sections/FAQ';
@@ -127,12 +126,18 @@ export default function App() {
       <ChargeMeter />
       <Nav />
       <main id="main" className="relative">
-        <CurrentLines />
         <Hero ready={ready} />
-        <div className="relative z-10 -my-2 overflow-hidden py-10">
-          <Marquee items={MARQUEE} className="-rotate-2 scale-[1.03]" />
-          <Marquee items={MARQUEE} tone="sky" reverse className="-mt-6 rotate-1 scale-[1.03]" />
+        <div className="border-y-2 border-ink bg-ink px-4 py-8 text-bg md:px-8 md:py-10">
+          <p className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-center gap-x-3 gap-y-2 md:gap-x-10">
+            {BAND.map((w, i) => (
+              <span key={w} className="flex items-center gap-x-3 md:gap-x-10">
+                {i > 0 && <Bolt className="h-5 w-5 text-secondary md:h-9 md:w-9" />}
+                <span className="display text-xl sm:text-2xl md:text-display-sm">{w}</span>
+              </span>
+            ))}
+          </p>
         </div>
+        <TechPartner />
         <About />
         <Numbers />
         <Features />

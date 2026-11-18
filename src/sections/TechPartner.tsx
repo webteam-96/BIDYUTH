@@ -1,42 +1,52 @@
 import { useRef } from 'react';
-import { COMMITTEE, EVENT, TECH } from '../data/event';
-import { ScrollTrigger } from '../lib/gsap';
+import { EVENT, TECH } from '../data/event';
+import { gsap, ScrollTrigger } from '../lib/gsap';
 import { useScrollTrigger } from '../hooks/useScrollTrigger';
+import { Bolt } from '../components/MagneticButton';
 
 export function TechPartner() {
   const root = useRef<HTMLElement>(null);
-  useScrollTrigger(root, () => {
+  useScrollTrigger(root, ({ motion }) => {
     ScrollTrigger.create({ trigger: '[data-strip]', start: 'top 85%', once: true, toggleClass: { targets: '[data-strip]', className: 'is-in' } });
+    if (!motion) return;
+    // entrance: card charges up, logo plate pops, bolt flickers like a spark
+    gsap
+      .timeline({ scrollTrigger: { trigger: '[data-strip]', start: 'top 85%', once: true } })
+      .from('[data-frame]', { scale: 0.9, autoAlpha: 0, duration: 0.6, ease: 'power3.out' })
+      .from('[data-plate]', { scale: 0.6, rotate: -8, autoAlpha: 0, duration: 0.7, ease: 'back.out(2)' }, '-=0.3')
+      .from('[data-line]', { y: 24, autoAlpha: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out' }, '-=0.45')
+      .fromTo('[data-spark]', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06, repeat: 6, yoyo: true, ease: 'none' }, '-=0.2');
   });
 
   return (
-    <section ref={root} data-bg="var(--bg)" className="relative px-4 py-20 md:px-8 lg:py-24">
-      <div className="mx-auto max-w-[1400px]">
+    <section ref={root} data-bg="var(--bg)" aria-label={TECH.label} className="relative px-4 py-12 md:px-8 lg:py-16">
+      <div data-frame className="live-current mx-auto max-w-[1400px] rounded-[32px] p-1">
         <a
           data-strip
           href={TECH.url}
           target="_blank"
           rel="noopener"
           data-cursor="VIEW"
-          className="shimmer flex flex-col items-start justify-between gap-5 rounded-[28px] border-2 border-ink bg-bg-alt px-5 py-6 md:flex-row md:items-center md:px-10"
+          className="shimmer grid gap-5 rounded-[28px] bg-ink p-5 text-bg md:grid-cols-[auto_1fr_auto] md:items-center md:gap-10 md:p-10"
         >
-          <span className="mono text-label">{TECH.label}</span>
-          <span className="display text-display-xs">{TECH.name}</span>
-          <img src={EVENT.logos.kaizen} alt={`${TECH.name} logo`} className="h-10 w-auto" width={200} height={40} loading="lazy" />
+          {/* logo sits on an off-white plate: the mark is drawn for light backgrounds */}
+          <span data-plate className="flex items-center justify-center rounded-2xl bg-bg px-6 py-5 md:px-8">
+            <img src={EVENT.logos.kaizen} alt={`${TECH.name} logo`} className="h-24 w-auto md:h-28" width={602} height={376} loading="lazy" />
+          </span>
+          <span className="flex min-w-0 flex-col gap-3">
+            <span data-line className="mono flex items-center gap-2 text-label text-secondary-2">
+              <span data-spark className="inline-flex"><Bolt className="h-4 w-4 text-secondary" /></span>
+              {TECH.label}
+            </span>
+            {/* one line on every width: size scales with the viewport */}
+            <span data-line className="display whitespace-nowrap text-[clamp(0.95rem,4.5vw,1.6rem)] md:text-[clamp(1.4rem,2.6vw,2.9rem)]">
+              {TECH.name}
+            </span>
+          </span>
+          <span data-line className="mono inline-flex min-h-11 items-center justify-center rounded-full border-2 border-bg px-5 text-label font-bold transition-colors hover:bg-bg hover:text-ink md:justify-self-end">
+            {TECH.cta} →
+          </span>
         </a>
-
-        <div className="mt-16 lg:mt-20">
-          <h2 className="mono mb-6 text-label font-bold">{COMMITTEE.label}</h2>
-          <ul className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-            {COMMITTEE.groups.flatMap((g) => g.members).map((m, i) => (
-              <li key={i} className="rounded-[24px] border border-line p-3 md:p-4">
-                <div className="mb-4 aspect-square rounded-2xl bg-bg-alt" aria-hidden="true" />
-                <p className="text-body font-medium">{m.name}</p>
-                <p className="mono text-label opacity-70">{m.role}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
     </section>
   );

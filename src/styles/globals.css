@@ -3,7 +3,7 @@
 
 :root {
   --bg: #f6fafa;
-  --bg-alt: #ffffff;
+  --bg-alt: #fbfdfd;
   --ink: #1f2a2e;
   --primary: #009c98;
   --primary-2: #d2eeec;
@@ -16,7 +16,7 @@
 
 @theme {
   --color-bg: #f6fafa;
-  --color-bg-alt: #ffffff;
+  --color-bg-alt: #fbfdfd;
   --color-ink: #1f2a2e;
   --color-primary: #009c98;
   --color-primary-2: #d2eeec;
@@ -54,7 +54,7 @@
   --text-manifesto: clamp(1.625rem, 1.1rem + 2.4vw, 3.75rem);
   --text-manifesto--line-height: 1.04;
   /* hero wordmark spans the content width on phones */
-  --text-hero: calc((100vw - 2rem) / 4.7);
+  --text-hero: calc((100vw - 3rem) / 5);
   --text-hero--line-height: 0.8;
   /* BIDYUTH is 4.66em wide in Playfair 800: fit the 1400px content box and the viewport gutters */
   --text-hero-lg: clamp(4.5rem, (100vw - 4rem) / 4.7, 18.5rem);
@@ -123,14 +123,6 @@ body {
 .charge-card:focus-within .charge-border rect { opacity: 1; animation: charge 1.6s linear infinite; }
 @keyframes charge { to { stroke-dashoffset: -100; } }
 
-/* active pricing card: slow glow pulse (opacity only, ~0.4 Hz) */
-.pulse-glow { position: relative; }
-.pulse-glow::after {
-  content: ''; position: absolute; inset: -6px; border-radius: 34px; pointer-events: none; z-index: -1;
-  box-shadow: 0 0 0 6px rgba(184, 57, 48, 0.35), 0 0 60px rgba(184, 57, 48, 0.7);
-  animation: glow 2.4s ease-in-out infinite alternate;
-}
-@keyframes glow { from { opacity: 0.45; } to { opacity: 1; } }
 
 /* India map: current pulses travel city → hub; hub ring pings */
 .current-pulse { stroke-dasharray: 0.07 0.93; animation: current 2.4s linear infinite; }
@@ -144,14 +136,29 @@ body {
 .swap span::after { content: attr(data-c); position: absolute; left: 0; top: 100%; color: var(--secondary); }
 a:hover .swap span, a:focus-visible .swap span { transform: translateY(-100%); }
 
+/* mobile menu overlay: wipe down, then links rise in (stagger via inline animation-delay) */
+.menu-in { animation: menu-in 0.5s cubic-bezier(0.7, 0, 0.2, 1) both; }
+@keyframes menu-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0% 0); } }
+.menu-item { animation: menu-item 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes menu-item { from { transform: translateY(40px); opacity: 0; } }
+
 /* tech partner shimmer */
 .shimmer { position: relative; overflow: hidden; }
 .shimmer::after {
   content: ''; position: absolute; inset: 0; transform: translateX(-120%); pointer-events: none;
   background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.65) 50%, transparent 70%);
 }
-.shimmer.is-in::after { animation: shimmer 1.6s 0.2s ease-out forwards; }
-@keyframes shimmer { to { transform: translateX(120%); } }
+.shimmer.is-in::after { animation: shimmer 3.6s 0.2s ease-out infinite; }
+/* sweep in the first 40%, then rest so the shine repeats every few seconds */
+@keyframes shimmer { 40%, 100% { transform: translateX(120%); } }
+
+/* tech partner: live current running around the card border */
+@property --spin { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.live-current {
+  background: conic-gradient(from var(--spin), var(--secondary), var(--secondary-2) 8%, var(--ink) 22%, var(--ink) 28%, var(--primary) 42%, var(--primary-2) 50%, var(--primary) 58%, var(--ink) 72%, var(--ink) 78%, var(--secondary));
+  animation: current-spin 3.5s linear infinite;
+}
+@keyframes current-spin { to { --spin: 360deg; } }
 
 .no-scrollbar { scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }

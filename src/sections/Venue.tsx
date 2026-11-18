@@ -1,18 +1,16 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { URLS, VENUE } from '../data/event';
 import { gsap } from '../lib/gsap';
 import { useScrollTrigger } from '../hooks/useScrollTrigger';
 import { SectionLabel } from '../components/SplitText';
 import { Bolt, MagneticButton } from '../components/MagneticButton';
 
-const PLACEHOLDER_BG = [
-  'linear-gradient(135deg,#d2eeec 0%,#009c98 60%,#00615e 100%)',
-  'linear-gradient(160deg,#f6eedd 0%,#b83930 100%)',
-  'linear-gradient(120deg,#f6eedd 0%,#d2eeec 100%)',
-];
+// solid tones shown while each photo loads
+const PLACEHOLDER_BG = ['var(--primary-2)', 'var(--secondary-2)', 'var(--primary-2)'];
 
 export function Venue() {
   const root = useRef<HTMLElement>(null);
+  const [mapReady, setMapReady] = useState(false);
 
   useScrollTrigger(root, ({ reduce, desktop }) => {
     if (reduce) {
@@ -51,7 +49,7 @@ export function Venue() {
             <figure
               key={i}
               data-par={[12, 28, 18][i]}
-              className={`absolute overflow-hidden rounded-[28px] border-2 border-ink shadow-[6px_6px_0_var(--ink)] ${
+              className={`absolute overflow-hidden rounded-[28px] border-2 border-ink ${
                 ['left-0 top-0 h-[62%] w-[70%]', 'right-0 top-[22%] z-10 h-[48%] w-[48%]', 'bottom-0 left-[12%] z-20 h-[36%] w-[46%]'][i]
               }`}
               style={{ background: PLACEHOLDER_BG[i] }}
@@ -78,13 +76,17 @@ export function Venue() {
             <p className="max-w-[44ch] text-lead opacity-80">{VENUE.body}</p>
             <address className="mono mt-6 text-label not-italic leading-relaxed opacity-80">{VENUE.address}</address>
           </div>
-          <div className="overflow-hidden rounded-[28px] border-2 border-ink">
+          <div className="relative overflow-hidden rounded-[28px] border-2 border-ink bg-primary-2">
+            {/* skeleton until the embed loads */}
+            {!mapReady && <div aria-hidden="true" className="absolute inset-0 animate-pulse bg-primary-2" />}
             <iframe
               title={`Map of ${VENUE.big}, ${VENUE.city}`}
               src={URLS.MAPS_EMBED}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="block h-[15rem] w-full grayscale-[0.6]"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+              onLoad={() => setMapReady(true)}
+              className={`relative block h-[15rem] w-full grayscale-[0.6] transition-opacity duration-300 ${mapReady ? 'opacity-100' : 'opacity-0'}`}
             />
           </div>
           <MagneticButton href={URLS.MAPS_LINK} cursor="VIEW" className="w-full md:w-auto md:self-start">

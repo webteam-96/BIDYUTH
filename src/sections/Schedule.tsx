@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { SCHEDULE } from '../data/event';
 import { SectionLabel, SplitText } from '../components/SplitText';
 import { ComingSoon } from '../components/ComingSoon';
@@ -46,9 +45,8 @@ export function Schedule() {
                   aria-controls={`panel-${d.id}`}
                   tabIndex={on ? 0 : -1}
                   onClick={() => pick(d.id)}
-                  className="relative min-h-11 rounded-full px-5 py-2.5 text-left lg:px-6 lg:py-3"
+                  className={`relative min-h-11 rounded-full px-5 py-2.5 text-left transition-colors duration-200 lg:px-6 lg:py-3 ${on ? 'bg-ink' : ''}`}
                 >
-                  {on && <motion.span layoutId="tab-pill" className="absolute inset-0 rounded-full bg-ink" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />}
                   <span className={`relative block ${on ? 'text-bg' : ''}`}>
                     <span className="display block text-display-xs">{d.tab}</span>
                     <span className="mono text-label opacity-80">{d.date}</span>
@@ -59,25 +57,13 @@ export function Schedule() {
           </div>
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div key={day} id={`panel-${day}`} role="tabpanel" aria-labelledby={`tab-${day}`}>
-          <motion.ol
-            className="border-t-2 border-ink"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            exit="hidden"
-            variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.06 } } }}
-          >
+          <div key={day} id={`panel-${day}`} role="tabpanel" aria-labelledby={`tab-${day}`}>
+          <ol className="border-t-2 border-ink">
             {current.sessions.map((s) => {
               const id = s.time + s.title;
               const on = openRow === id;
               return (
-                <motion.li
-                  key={id}
-                  variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.2, 0.8, 0.2, 1] } } }}
-                  className="border-b border-line"
-                >
+                <li key={id} className="border-b border-line">
                   {/* tap to expand works everywhere; hover flood is a desktop bonus */}
                   <button
                     type="button"
@@ -89,24 +75,16 @@ export function Schedule() {
                     <span className="display text-display-xs">{s.title}</span>
                     <span className="mono mt-1 w-max rounded-full border border-ink px-3 py-1 text-label md:mt-0">{s.type}</span>
                   </button>
-                  <AnimatePresence initial={false}>
-                    {on && (
-                      <motion.p
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden px-2 text-body md:pl-[10rem]"
-                      >
-                        <span className="block pb-4">{SCHEDULE.detailPlaceholder}</span>
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                </motion.li>
+                  <div aria-hidden={!on} className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${on ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                    <p className="overflow-hidden px-2 text-body md:pl-[10rem]">
+                      <span className="block pb-4">{SCHEDULE.detailPlaceholder}</span>
+                    </p>
+                  </div>
+                </li>
               );
             })}
-          </motion.ol>
-          </motion.div>
-        </AnimatePresence>
+          </ol>
+          </div>
         <p className="mono mt-6 text-label opacity-70">{SCHEDULE.placeholderNote}</p>
         </>
         )}

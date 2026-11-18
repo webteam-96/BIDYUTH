@@ -3,7 +3,6 @@ import { SPEAKERS } from '../data/event';
 import { gsap, getLenis } from '../lib/gsap';
 import { useScrollTrigger } from '../hooks/useScrollTrigger';
 import { SectionLabel, SplitText } from '../components/SplitText';
-import { ComingSoon } from '../components/ComingSoon';
 
 function Silhouette() {
   return (
@@ -70,19 +69,16 @@ export function Speakers() {
     };
   });
 
+  // hidden until the line-up is announced (Schedule's placeholder covers both)
+  if (!SPEAKERS.ready) return null;
   const first = SPEAKERS.items[0];
   return (
-    <section id="speakers" ref={root} data-bg="var(--bg-alt)" className={`relative overflow-hidden py-20 ${SPEAKERS.ready ? 'lg:flex lg:min-h-[100svh] lg:flex-col lg:justify-center lg:py-12' : 'lg:py-24'}`}>
+    <section id="speakers" ref={root} data-bg="var(--bg-alt)" className="relative overflow-hidden py-20 lg:flex lg:min-h-[100svh] lg:flex-col lg:justify-center lg:py-12">
       <div className="mx-auto mb-8 w-full max-w-[1464px] px-4 md:px-8 lg:mb-10">
         <SectionLabel label={SPEAKERS.label} className="mb-6 lg:mb-8" />
         <SplitText title={SPEAKERS.title} accent={SPEAKERS.titleAccent} />
       </div>
 
-      {!SPEAKERS.ready ? (
-        <div data-reveal className="mx-auto w-full max-w-[1464px] px-4 md:px-8">
-          <ComingSoon text={SPEAKERS.comingSoon} />
-        </div>
-      ) : (
       <>
       {/* mobile / tablet: one honest placeholder card */}
       <div className="px-4 md:px-8 lg:hidden">
@@ -106,7 +102,6 @@ export function Speakers() {
         ))}
       </div>
       </>
-      )}
     </section>
   );
 }

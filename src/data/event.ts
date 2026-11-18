@@ -72,6 +72,9 @@ export const HERO = {
   date: { range: '29–30', monthYear: 'January 2027', iso: '2027-01-29' },
 };
 
+/** brand tagline band under the hero (from the BIDYUTH logo lockup) */
+export const BAND = ['Business', 'Bonding', 'Beyond'];
+
 export const MARQUEE = ['3000+ DELEGATES', '23 CITIES', '14 STATES', '2 DAYS', 'PALACE GROUNDS'];
 
 export const ABOUT = {
@@ -191,14 +194,17 @@ export const SPEAKERS = {
   })),
 };
 
+// the Speakers section is hidden until the line-up is announced, so drop its nav link too
+if (!SPEAKERS.ready) NAV.links.splice(NAV.links.findIndex((l) => l.href === '#speakers'), 1);
+
 export const SCHEDULE = {
   label: 'Schedule',
   title: 'Two days.',
   titleAccent: 'Full charge.',
   // flip to true once the real agenda is in `days`
   ready: false,
-  comingSoon: "The two days' agenda will be published here soon.",
-  placeholderNote: 'Tentative agenda — final timings to be announced.',
+  comingSoon: "The speaker line-up and the two days' agenda will be published here soon.",
+  placeholderNote: 'Tentative agenda. Final timings to be announced.',
   tablistLabel: 'Event days',
   detailPlaceholder: 'Session details to be announced.', // PLACEHOLDER per-session details
   // PLACEHOLDER agenda
@@ -210,9 +216,9 @@ export const SCHEDULE = {
       sessions: [
         { time: '08:00', title: 'Registration & QR badge check-in', type: 'Arrival' },
         { time: '10:00', title: 'Inauguration', type: 'Main stage' },
-        { time: '11:30', title: 'Keynote — TBA', type: 'Keynote' },
+        { time: '11:30', title: 'Keynote: TBA', type: 'Keynote' },
         { time: '13:00', title: 'Lunch & networking', type: 'Networking' },
-        { time: '14:30', title: 'KYT Session — live on the LED wall', type: 'KYT' },
+        { time: '14:30', title: 'KYT Session, live on the LED wall', type: 'KYT' },
         { time: '17:00', title: 'Stall walk & partner showcase', type: 'Expo' },
         { time: '19:30', title: 'Evening networking', type: 'Networking' },
       ],
@@ -223,10 +229,10 @@ export const SCHEDULE = {
       date: '30 Jan 2027',
       sessions: [
         { time: '09:00', title: 'Morning KYT appointments', type: 'KYT' },
-        { time: '11:00', title: 'Keynote — TBA', type: 'Keynote' },
-        { time: '12:30', title: 'Panel — TBA', type: 'Panel' },
+        { time: '11:00', title: 'Keynote: TBA', type: 'Keynote' },
+        { time: '12:30', title: 'Panel: TBA', type: 'Panel' },
         { time: '13:30', title: 'Lunch & networking', type: 'Networking' },
-        { time: '15:00', title: 'Awards — top giver, receiver, chapter, zone', type: 'Main stage' },
+        { time: '15:00', title: 'Awards: top giver, receiver, chapter, zone', type: 'Main stage' },
         { time: '17:00', title: 'Valedictory', type: 'Main stage' },
       ],
     },
@@ -238,7 +244,7 @@ export const VENUE = {
   region: 'Karnataka',
   big: 'PALACE GROUNDS',
   city: 'Bengaluru',
-  body: 'One of Bengaluru’s grandest event grounds — open, central and built for crowds of thousands.',
+  body: 'One of Bengaluru’s grandest event grounds: open, central and built for crowds of thousands.',
   address: 'White Petals, Palace Grounds, Jayamahal Road, Vasanth Nagar, Bengaluru, Karnataka',
   mapsCta: 'Open in Google Maps',
   // Wikimedia Commons, CC BY-SA: keep the credits visible on the page
@@ -255,9 +261,10 @@ export const PARTNERS = {
   title: 'Plug your brand',
   titleAccent: 'into 3000+ businesses',
   cta: 'Enquire Now',
+  comingSoon: 'Partner enquiries will open here soon.',
   items: [
     { title: 'Stalls', body: 'Multiple categories and sizes on the expo floor, right in the delegate flow.' },
-    { title: 'Standees', body: 'Premium locations across the venue — entry, lounges and meal zones.' },
+    { title: 'Standees', body: 'Premium locations across the venue: entry, lounges and meal zones.' },
     { title: 'Digital & Physical Presence', body: 'On-screen visibility on the main LED wall plus on-ground branding.' },
     { title: 'Sponsorship', body: 'Packages with headline branding, stage mentions and delegate benefits.' },
   ],
@@ -266,7 +273,7 @@ export const PARTNERS = {
 export const APP = {
   title: 'Exclusive to',
   titleAccent: 'registered delegates.',
-  body: 'Your whole event in one app — find people, book KYT slots, flash your badge and swap cards.',
+  body: 'Your whole event in one app. Find people, book KYT slots, flash your badge and swap cards.',
   badge: 'Powered by Kaizen Events',
   chips: ['Participants', 'KYT', 'QR Badge', 'Gallery', 'Business Cards'],
   screens: [
@@ -280,7 +287,8 @@ export const APP = {
 export const TECH = {
   label: 'Official Technology Partner',
   name: 'Kaizen Infotech Solutions Pvt. Ltd.',
-  url: 'https://example.com', // PLACEHOLDER
+  url: 'https://www.kaizeninfotech.com',
+  cta: 'Visit website',
 };
 
 export const FAQ = {
@@ -409,7 +417,7 @@ export const CONTACT = {
   followLabel: 'Follow',
   copyright: '© 2027 Forum of Business By Brahmins',
   footerNavLabel: 'Footer',
-  techLabel: 'Technology partner',
+  techLabel: 'Designed & developed by',
 };
 
 /** Interface strings (screen-reader labels, controls). */

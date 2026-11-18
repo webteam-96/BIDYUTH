@@ -23,7 +23,7 @@ export function AboutPage() {
                 {A.title} <span className="serif">{A.titleAccent}</span>
               </h1>
             </div>
-            <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-[28px] border-2 border-ink bg-ink shadow-[5px_5px_0_var(--ink)]">
+            <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-[28px] border-2 border-ink bg-ink">
               {[
                 ['Dates', EVENT.dateLabel],
                 ['Venue', EVENT.venueFull],
@@ -63,7 +63,7 @@ export function AboutPage() {
             <h2 className="display mb-10 text-display-sm">{A.whyLabel}</h2>
             <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {A.why.map((w, i) => (
-                <li key={w} className="flex min-h-[10rem] flex-col justify-between gap-6 rounded-[28px] border-2 border-ink bg-bg-alt p-5 shadow-[5px_5px_0_var(--ink)]">
+                <li key={w} className="flex min-h-[10rem] flex-col justify-between gap-6 rounded-[28px] border-2 border-ink bg-bg-alt p-5">
                   <span className="mono text-label text-secondary">0{i + 1}</span>
                   <p className="text-lead font-bold leading-snug">{w}</p>
                 </li>

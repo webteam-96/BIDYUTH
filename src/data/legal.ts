@@ -13,7 +13,7 @@ export const ABOUT_PAGE = {
     'We are delighted to introduce you to the BBB BIDYUTH 2027 2-Day Business Conclave, an unparalleled gathering set to redefine the landscape of business innovation and collaboration. As the excitement builds for this transformative event, we wanted to provide you with a glimpse into what awaits you over these two dynamic days.',
   overviewLabel: 'Event overview',
   overview:
-    "BBB BIDYUTH 2027 Business Conclave is not merely an event, it's a convergence of minds, ideas, and opportunities. Over the course of two days, industry leaders, visionaries, and thought influencers will come together to explore, discuss, and chart the course for the future of business. This conclave is designed to inspire, connect, and empower professionals across diverse sectors.",
+    "BBB BIDYUTH 2027 Business Conclave is a convergence of minds, ideas, and opportunities. Over the course of two days, industry leaders, visionaries, and thought influencers will come together to explore, discuss, and chart the course for the future of business. This conclave is designed to inspire professionals across diverse sectors, connect them, and help their businesses grow.",
   whyLabel: 'Why attend',
   why: [
     'Gain strategic insights from industry leaders.',
