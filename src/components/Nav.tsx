@@ -39,8 +39,9 @@ export function Nav({ onHome = true }: { onHome?: boolean }) {
         className={`fixed inset-x-0 top-3 z-[72] px-4 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)] md:px-8`}
       >
         <nav aria-label={UI.navLabel} className="mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-line bg-bg py-1.5 pl-3 pr-1.5">
-          <a href={link('#top')} onClick={(e) => go(e, '#top')} className="flex min-h-11 items-center gap-2" aria-label={UI.home}>
-            <img src={EVENT.logos.bidyuth} alt="" className="h-6 w-auto sm:h-8 md:h-9" width={2036} height={490} />
+          <a href={link('#top')} onClick={(e) => go(e, '#top')} className="flex min-h-11 items-center gap-1 min-[360px]:gap-1.5 sm:gap-2" aria-label={UI.home}>
+            <img src={EVENT.logos.bidyuth} alt="" className="h-4 w-auto min-[360px]:h-5 min-[400px]:h-6 sm:h-8 md:h-9" width={2036} height={490} />
+            <img src={EVENT.logos.bbb} alt="" className="h-7 w-auto min-[360px]:h-8 min-[400px]:h-10 sm:h-11 md:h-12" width={397} height={411} />
           </a>
           <ul className="hidden items-center gap-5 xl:flex 2xl:gap-7">
             {NAV.links.map((l) => (
@@ -59,7 +60,7 @@ export function Nav({ onHome = true }: { onHome?: boolean }) {
               data-cursor="REGISTER"
               className="mono inline-flex min-h-11 items-center gap-1.5 rounded-full bg-secondary px-3 text-label font-bold text-bg sm:px-4"
             >
-              {NAV.cta} <Bolt className="h-3.5 w-3.5" />
+              {NAV.cta} <Bolt className="h-3.5 w-3.5 max-[359px]:hidden" />
             </a>
             <button
               ref={menuBtn}

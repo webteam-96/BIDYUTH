@@ -7,7 +7,10 @@ export function Footer({ onHome = true }: { onHome?: boolean }) {
     <footer data-bg="var(--ink)" className="bg-ink px-4 pb-8 pt-16 text-bg md:px-8 md:pt-20">
       <div className="mx-auto grid max-w-[1400px] gap-10 lg:grid-cols-[1fr_minmax(0,34rem)] lg:items-end">
         <div>
-          <img src={EVENT.logos.bidyuthWhite} alt={`${EVENT.organiserShort} ${EVENT.name} logo`} className="h-12 w-auto md:h-14" width={2036} height={490} loading="lazy" />
+          <div className="flex items-center gap-4 md:gap-5">
+            <img src={EVENT.logos.bidyuthWhite} alt={`${EVENT.organiserShort} ${EVENT.name} logo`} className="h-12 w-auto md:h-14" width={2036} height={490} loading="lazy" />
+            <img src={EVENT.logos.bbbWhite} alt={`${EVENT.organiser} logo`} className="h-20 w-auto md:h-24" width={397} height={411} loading="lazy" />
+          </div>
           <p className="serif mt-5 text-display-xs">{EVENT.tagline}.</p>
           <p className="mt-2 text-body opacity-80">
             {HERO.date.range} {HERO.date.monthYear} · {EVENT.venueFull}

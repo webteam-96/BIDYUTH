@@ -42,8 +42,9 @@ export const EVENT = {
     // cut from the brand deck JPG; swap for vector files when available
     bidyuth: './logos/bidyuth.svg',
     bidyuthWhite: './logos/bidyuth-white.svg',
-    // PLACEHOLDER logos
-    bbb: './logos/bbb.svg',
+    // white variant only recolours the registered mark for dark backgrounds
+    bbb: './logos/bbb.webp',
+    bbbWhite: './logos/bbb-white.webp',
     kaizen: './logos/kaizen.svg',
   },
 };
